@@ -19,29 +19,234 @@
     }
   ],
   "paths": {
-    "/plants": {
+    "/linkedin/profile": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "description": "Get the LinkedIn profile of the user. Required at least one of the query parameters",
         "parameters": [
           {
-            "name": "limit",
+            "name": "url",
             "in": "query",
-            "description": "The maximum number of results to return",
+            "description": "URL of the LinkedIn profile (optional)",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string",
+              "format": "url"
+            }
+          },
+          {
+            "name": "publicIdentifier",
+            "in": "query",
+            "description": "Public identifier of the LinkedIn profile (optional)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "query",
+            "description": "ID of the LinkedIn profile (optional)",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Profile response",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "$ref": "#/components/schemas/Profile"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "publicIdentifier": {
+                          "type": "string"
+                        },
+                        "profileId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new plant in the store",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/profile-search": {
+      "get": {
+        "description": "Get the LinkedIn profile of the user. Required at least one of the query parameters",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search profiles by name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "url"
+            }
+          },
+          {
+            "name": "companyId",
+            "in": "query",
+            "description": "Filter by company ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Filter by location text",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "geoId",
+            "in": "query",
+            "description": "Filter by location as LinkedIn Geo ID. Overrides the location query param. Use the /linkedin/geo-id-search endpoint to find the Geo ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "default": "1",
+            "description": "Page number, use for pagination",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Profile"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "totalPages": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "totalElements": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "pageNumber": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "previousElements": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "format": "int32"
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string"
+                        },
+                        "companyId": {
+                          "type": "string"
+                        },
+                        "location": {
+                          "type": "string"
+                        },
+                        "geoId": {
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "string"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -132,19 +337,262 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "Profile": {
+        "required": ["publicIdentifier"],
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
+          "publicIdentifier": {
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
+          "lastName": {
             "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "headline": {
+            "type": "string"
+          },
+          "about": {
+            "type": "string"
+          },
+          "photo": {
+            "type": "string"
+          },
+          "registeredAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "topSkills": {
+            "type": "string"
+          },
+          "connectionsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "followerCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "openToWork": {
+            "type": "boolean"
+          },
+          "hiring": {
+            "type": "boolean"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "preferredGeoPlace": {
+                "type": "string",
+                "format": "nullable"
+              },
+              "countryCode": {
+                "type": "string"
+              },
+              "postalCode": {
+                "type": "string",
+                "format": "nullable"
+              },
+              "country": {
+                "type": "string"
+              },
+              "countryFull": {
+                "type": "string"
+              }
+            }
+          },
+          "currentPosition": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "companyName": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "experience": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "companyName": {
+                  "type": "string"
+                },
+                "duration": {
+                  "type": "string"
+                },
+                "position": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "companyLink": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "startDate": {
+                  "type": "string"
+                },
+                "endDate": {
+                  "type": "string"
+                },
+                "employmentType": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "education": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                },
+                "degree": {
+                  "type": "string"
+                },
+                "startDate": {
+                  "type": "string"
+                },
+                "endDate": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "certificates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "issuedAt": {
+                  "type": "string"
+                },
+                "issuedBy": {
+                  "type": "string"
+                },
+                "issuedByLink": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "receivedRecommendations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "givenBy": {
+                  "type": "string"
+                },
+                "givenAt": {
+                  "type": "string"
+                },
+                "givenByLink": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "language": {
+                  "type": "string"
+                },
+                "proficiency": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "publications": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "publishedAt": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "featured": {
+            "type": "object",
+            "properties": {
+              "images": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "url"
+                }
+              },
+              "link": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "subtitle": {
+                "type": "string"
+              }
+            }
+          },
+          "verified": {
+            "type": "boolean"
           }
         }
       },
@@ -154,9 +602,7 @@
             "$ref": "#/components/schemas/Plant"
           },
           {
-            "required": [
-              "id"
-            ],
+            "required": ["id"],
             "type": "object",
             "properties": {
               "id": {
@@ -169,10 +615,7 @@
         ]
       },
       "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
+        "required": ["error", "message"],
         "type": "object",
         "properties": {
           "error": {
