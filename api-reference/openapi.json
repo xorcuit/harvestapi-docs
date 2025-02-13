@@ -10,17 +10,18 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://harvestapi.net/api"
     }
   ],
   "security": [
     {
-      "bearerAuth": []
+      "ApiKeyAuthHeader": []
     }
   ],
   "paths": {
     "/linkedin/profile": {
       "get": {
+        "summary": "Get the LinkedIn profile of the user",
         "description": "Get the LinkedIn profile of the user. Required at least one of the query parameters",
         "parameters": [
           {
@@ -96,53 +97,18 @@
             }
           }
         }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/linkedin/profile-search": {
       "get": {
-        "description": "Get the LinkedIn profile of the user. Required at least one of the query parameters",
+        "summary": "Search LinkedIn profiles",
+        "description": "Search LinkedIn profiles by name, company, location, and more",
         "parameters": [
           {
             "name": "search",
             "in": "query",
-            "description": "Search profiles by name",
             "required": true,
+            "description": "Search profiles by name",
             "schema": {
               "type": "string",
               "format": "url"
@@ -151,6 +117,7 @@
           {
             "name": "companyId",
             "in": "query",
+            "required": false,
             "description": "Filter by company ID",
             "schema": {
               "type": "string"
@@ -175,7 +142,6 @@
           {
             "name": "page",
             "in": "query",
-            "default": "1",
             "description": "Page number, use for pagination",
             "schema": {
               "type": "string"
@@ -193,7 +159,7 @@
                     "elements": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Profile"
+                        "$ref": "#/components/schemas/ProfileShort"
                       }
                     },
                     "pagination": {
@@ -254,75 +220,6 @@
           },
           "400": {
             "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
             "content": {
               "application/json": {
                 "schema": {
@@ -402,6 +299,7 @@
               }
             }
           },
+
           "currentPosition": {
             "type": "array",
             "items": {
@@ -596,23 +494,26 @@
           }
         }
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+      "ProfileShort": {
+        "required": ["publicIdentifier"],
+        "type": "object",
+        "properties": {
+          "publicIdentifier": {
+            "type": "string"
           },
-          {
-            "required": ["id"],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
+          "name": {
+            "type": "string"
+          },
+          "position": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
           }
-        ]
+        }
       },
       "Error": {
         "required": ["error", "message"],
@@ -629,9 +530,10 @@
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      "ApiKeyAuthHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
       }
     }
   }

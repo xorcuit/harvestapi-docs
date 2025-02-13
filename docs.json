@@ -15,11 +15,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "introduction",
-              "quickstart",
-              "development"
-            ]
+            "pages": ["introduction", "quickstart", "development"]
           },
           {
             "group": "Essentials",
@@ -39,16 +35,13 @@
         "groups": [
           {
             "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "pages": ["api-reference/introduction"]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Linkedin Profile",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete"
+              "api-reference/profile/get",
+              "api-reference/profile/search"
             ]
           }
         ]
