@@ -7,7 +7,7 @@
     "light": "#ffca28",
     "dark": "#ffa000"
   },
-  "favicon": "/favicon.ico",
+  "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
@@ -15,16 +15,20 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["quickstart"]
+            "pages": ["quickstart", "concurrency"]
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "LinkedIn API Reference",
         "groups": [
           {
-            "group": "Linkedin Profile",
-            "pages": ["api-reference/profile/get", "api-reference/profile/search"]
+            "group": "LinkedIn Profile",
+            "pages": ["linkedin-api-reference/profile/get", "linkedin-api-reference/profile/search"]
+          },
+          {
+            "group": "LinkedIn Company",
+            "pages": ["linkedin-api-reference/company/get", "linkedin-api-reference/company/search"]
           }
         ]
       }

@@ -164,28 +164,7 @@
                     },
                     "pagination": {
                       "type": "object",
-                      "properties": {
-                        "totalPages": {
-                          "type": "integer",
-                          "format": "int32"
-                        },
-                        "totalElements": {
-                          "type": "integer",
-                          "format": "int32"
-                        },
-                        "pageNumber": {
-                          "type": "integer",
-                          "format": "int32"
-                        },
-                        "previousElements": {
-                          "type": "integer",
-                          "format": "int32"
-                        },
-                        "pageSize": {
-                          "type": "integer",
-                          "format": "int32"
-                        }
-                      }
+                      "$ref": "#/components/schemas/Pagination"
                     },
                     "status": {
                       "type": "string"
@@ -230,10 +209,221 @@
           }
         }
       }
+    },
+    "/linkedin/company": {
+      "get": {
+        "summary": "Get the LinkedIn company",
+        "description": "Get the LinkedIn company. Required at least one of the query parameters",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "URL of the LinkedIn company (optional)",
+            "schema": {
+              "type": "string",
+              "format": "url"
+            }
+          },
+          {
+            "name": "universalName",
+            "in": "query",
+            "description": "Universal name of the LinkedIn company profile, can be found in URL (optional)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Company profile response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "$ref": "#/components/schemas/Company"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "universalName": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/company-search": {
+      "get": {
+        "summary": "Search LinkedIn companies",
+        "description": "Retrieve a list of LinkedIn companies matching the specified search criteria.",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Keywords to search for in company names.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Filter companies by location.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "geoId",
+            "in": "query",
+            "description": "Filter by location as LinkedIn Geo ID. Overrides the location query param. Use the /linkedin/geo-id-search endpoint to find the Geo ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of companies matching the search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CompanyShort"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the response."
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Error message, if any."
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string"
+                        },
+                        "location": {
+                          "type": "string"
+                        },
+                        "geoId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "Pagination": {
+        "type": "object",
+        "properties": {
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "previousElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "Profile": {
         "required": ["publicIdentifier"],
         "type": "object",
@@ -511,6 +701,342 @@
             "type": "string"
           },
           "url": {
+            "type": "string"
+          }
+        }
+      },
+      "Company": {
+        "required": ["universalName"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "universalName": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tagline": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "linkedinUrl": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "foundedOn": {
+            "type": "object",
+            "properties": {
+              "month": {
+                "type": "string",
+                "format": "nullable"
+              },
+              "year": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "day": {
+                "type": "string",
+                "format": "nullable"
+              }
+            }
+          },
+          "employeeCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "employeeCountRange": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "end": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          "followerCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "headquarter": {
+            "type": "object",
+            "properties": {
+              "geographicArea": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "postalCode": {
+                "type": "string"
+              },
+              "line2": {
+                "type": "string",
+                "format": "nullable"
+              },
+              "line1": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "parsed": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "countryCode": {
+                    "type": "string"
+                  },
+                  "regionCode": {
+                    "type": "string",
+                    "format": "nullable"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "countryFull": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "localizedName": {
+                  "type": "string"
+                },
+                "headquarter": {
+                  "type": "boolean"
+                },
+                "description": {
+                  "type": "string",
+                  "format": "nullable"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "geographicArea": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "postalCode": {
+                  "type": "string",
+                  "format": "nullable"
+                },
+                "line2": {
+                  "type": "string",
+                  "format": "nullable"
+                },
+                "line1": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "specialities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "industry": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "logos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "height": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "expiresAt": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "backgroundCovers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "height": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "expiresAt": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "jobSearchUrl": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string",
+            "format": "nullable"
+          },
+          "crunchbaseFundingData": {
+            "type": "object",
+            "properties": {
+              "numberOfFundingRounds": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "lastFundingRound": {
+                "type": "object",
+                "properties": {
+                  "localizedFundingType": {
+                    "type": "string"
+                  },
+                  "leadInvestors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "moneyRaised": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "string"
+                      },
+                      "currencyCode": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "fundingRoundUrl": {
+                    "type": "string"
+                  },
+                  "announcedOn": {
+                    "type": "object",
+                    "properties": {
+                      "month": {
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "year": {
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "day": {
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
+                  },
+                  "numberOfOtherInvestors": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "investorsUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "organizationUrl": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "fundingRoundsUrl": {
+                "type": "string"
+              }
+            }
+          },
+          "pageVerified": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CompanyShort": {
+        "required": ["universalName"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "industry": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "followers": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "logo": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "universalName": {
             "type": "string"
           }
         }

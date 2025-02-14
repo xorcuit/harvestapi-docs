@@ -57,23 +57,6 @@ print(response.text)
 
 </CodeGroup>
 
-## Rate Limiting and Concurrency
-
-While there are no rate limits on the number of requests you can make per minute, there are concurrency limits based on your subscription plan:
-
-- Free Account: Maximum of 1 concurrent request.
-- Basic Plan: Maximum of 10 concurrent requests.
-
-To check your current concurrency limits:
-
-- Log in to your HarvestAPI account.
-- Navigate to your [Subscription Page](https://harvestapi.net/admin/subscription).
-- Review your plan details to see your concurrency limits.
-
-Exceeding your concurrency limits should usually put your next requests in a queue,
-though request rejection is also possible. Ensure that your application manages concurrent requests appropriately
-to stay within your plan's limits.
-
 ## Next Steps
 
 Check out the [API Reference](/linkedin-api-reference) for detailed information on each API endpoint.
