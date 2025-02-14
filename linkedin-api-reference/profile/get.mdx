@@ -1,5 +1,5 @@
 ---
-title: 'Get LinkedIn Profile'
+title: 'Get Profile'
 openapi: 'GET /linkedin/profile'
 ---
 
@@ -15,8 +15,7 @@ fetch(`https://harvestapi.net/api/linkedin/profile?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
-  .then((data) => console.log(data))
-  .catch((err) => console.error(err));
+  .then((data) => console.log(data));
 ```
 
 ```bash cURL

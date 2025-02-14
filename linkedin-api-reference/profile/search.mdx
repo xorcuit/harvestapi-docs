@@ -1,5 +1,5 @@
 ---
-title: 'Search LinkedIn Profiles'
+title: 'Search Profiles'
 openapi: 'GET /linkedin/profile-search'
 ---
 
@@ -16,8 +16,7 @@ fetch(`https://harvestapi.net/api/linkedin/profile-search?${params.toString()}`,
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
-  .then((response) => console.log(response))
-  .catch((err) => console.error(err));
+  .then((data) => console.log(data));
 ```
 
 ```bash cURL
@@ -87,8 +86,6 @@ fetch(`https://harvestapi.net/api/linkedin/geo-id-search?search=New York`, {
     });
     fetch(`https://harvestapi.net/api/linkedin/profile-search?${params.toString()}`)
       .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-  })
-  .catch((err) => console.error(err));
+      .then((data) => console.log(data));
+  });
 ```
