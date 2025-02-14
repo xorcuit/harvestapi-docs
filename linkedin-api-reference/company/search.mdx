@@ -3,6 +3,8 @@ title: 'Search Companies'
 openapi: 'GET /linkedin/company-search'
 ---
 
+import GeoIdSnippet from '/snippets/geo-id.mdx';
+
 <CodeGroup>
 
 ```javascript JavaScript
@@ -40,13 +42,7 @@ print(response.text)
 
 ## Search by LinkedIn GeoID
 
-For most of the cases, when specifying full location name, the search by the `location` parameter should work fine.  
-However sometimes search by location may not give you what you expect, as LinkedIn have some other location for your text query.
-For example, `NY` returns `New Zealand` as first match instead of `New York`
-(it's based on LinkedIn autocomplete feature, you can try it in UI).
-
-To make sure the location is correct, you can fetch LinkedIn GeoID first and check it.
-GeoID search is free, it will not count against your quota.
+<GeoIdSnippet />
 
 ```javascript JavaScript
 const apiKey = '<api-key>';
