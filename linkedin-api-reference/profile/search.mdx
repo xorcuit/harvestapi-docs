@@ -4,6 +4,7 @@ openapi: 'GET /linkedin/profile-search'
 ---
 
 import GeoIdSnippet from '/snippets/geo-id.mdx';
+import GetCompanyId from '/snippets/get-company-id.mdx';
 
 <CodeGroup>
 
@@ -41,48 +42,6 @@ print(response.text)
 
 </CodeGroup>
 
-## How to get Company ID
-
-```javascript JavaScript
-const params = new URLSearchParams({
-  search: 'Google',
-  location: 'Australia',
-  apiKey: '<api-key>',
-});
-
-fetch(`https://harvestapi.net/api/linkedin/company-search?${params.toString()}`)
-  .then((res) => res.json())
-  .then((data) => {
-    const companies = data.elements;
-    const firstMatchId = companies[0].id;
-    console.log(`LinkedIn ID for Google: ${firstMatchId}`);
-  });
-```
-
-## Search by LinkedIn GeoID
+<GetCompanyId />
 
 <GeoIdSnippet />
-
-```javascript JavaScript
-const apiKey = '<api-key>';
-
-fetch(`https://harvestapi.net/api/linkedin/geo-id-search?search=New York`, {
-  headers: { 'X-API-Key': apiKey },
-})
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('All matches:', data.elements);
-    console.log('Closest match GeoID:', data.id);
-
-    // Search for profiles at Google in New York
-    const params = new URLSearchParams({
-      companyId: '1441',
-      geoId: data.id,
-      page: '1',
-      apiKey,
-    });
-    fetch(`https://harvestapi.net/api/linkedin/profile-search?${params.toString()}`)
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  });
-```

@@ -1,0 +1,16 @@
+## How to get Company ID
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  search: 'Google',
+  apiKey: '<api-key>',
+});
+
+fetch(`https://harvestapi.net/api/linkedin/company-search?${params.toString()}`)
+  .then((res) => res.json())
+  .then((data) => {
+    const companies = data.elements;
+    const firstMatchId = companies[0].id;
+    console.log(`LinkedIn ID for Google: ${firstMatchId}`);
+  });
+```

@@ -1,3 +1,5 @@
+## Search by LinkedIn GeoID
+
 For most of the cases, when specifying full location name, the search by the `location` parameter should work fine.  
 However sometimes search by location may not give you what you expect, as LinkedIn have some other location for your text query.
 For example, `NY` returns `New Zealand` as first match instead of `New York`
@@ -5,3 +7,25 @@ For example, `NY` returns `New Zealand` as first match instead of `New York`
 
 To make sure the location is correct, you can fetch LinkedIn GeoID first and check it.
 GeoID search is free, it will not count against your quota.
+
+```javascript JavaScript
+const apiKey = '<api-key>';
+
+fetch(`https://harvestapi.net/api/linkedin/geo-id-search?search=New York`, {
+  headers: { 'X-API-Key': apiKey },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('All matches:', data.elements);
+    console.log('Closest match GeoID:', data.id);
+
+    // Search for profiles in New York
+    const params = new URLSearchParams({
+      geoId: data.id,
+      apiKey,
+    });
+    fetch(`https://harvestapi.net/api/linkedin/profile-search?${params.toString()}`)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  });
+```

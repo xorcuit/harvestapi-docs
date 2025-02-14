@@ -29,6 +29,10 @@
           {
             "group": "LinkedIn Company",
             "pages": ["linkedin-api-reference/company/get", "linkedin-api-reference/company/search"]
+          },
+          {
+            "group": "LinkedIn Job",
+            "pages": ["linkedin-api-reference/job/get", "linkedin-api-reference/job/search"]
           }
         ]
       }
