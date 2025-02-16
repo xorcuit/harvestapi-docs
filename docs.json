@@ -33,6 +33,18 @@
           {
             "group": "LinkedIn Job",
             "pages": ["linkedin-api-reference/job/get", "linkedin-api-reference/job/search"]
+          },
+          {
+            "group": "LinkedIn Post",
+            "pages": [
+              "linkedin-api-reference/post/search",
+              "linkedin-api-reference/post/company-posts",
+              "linkedin-api-reference/post/user-posts"
+            ]
+          },
+          {
+            "group": "LinkedIn GeoID",
+            "pages": ["linkedin-api-reference/geo-id/search"]
           }
         ]
       }
@@ -64,5 +76,26 @@
       "href": "https://harvestapi.net/admin/dashboard"
     }
   },
-  "footer": {}
+  "footer": {
+    "links": [
+      {
+        "header": "Product",
+        "items": [
+          { "label": "Pricing", "href": "https://harvestapi.net/#pricing" },
+          { "label": "Documentation", "href": "https://docs.harvestapi.net" },
+          { "label": "Dashboard", "href": "https://harvestapi.net/admin/dashboard" },
+          { "label": "Community ", "href": "https://discord.gg/FDeQZJkYgU" }
+        ]
+      },
+      {
+        "header": "Legal",
+        "items": [
+          { "label": "Terms of Service", "href": "https://harvestapi.net/info/terms-of-service" },
+          { "label": "Privacy Policy", "href": "https://harvestapi.net/info/privacy-policy" },
+          { "label": "Cookie Policy", "href": "https://harvestapi.net/info/cookie-policy" },
+          { "label": "Refund Policy", "href": "https://harvestapi.net/info/refund-policy" }
+        ]
+      }
+    ]
+  }
 }

@@ -1,0 +1,14 @@
+## How to get Profile ID
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  url: 'https://www.linkedin.com/in/williamhgates',
+  apiKey: '<api-key>',
+});
+
+fetch(`https://harvestapi.net/api/linkedin/profile?${params.toString()}`)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(`Bill Gates profile ID: ${data.id}`);
+  });
+```

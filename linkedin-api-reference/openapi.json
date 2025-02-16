@@ -606,6 +606,197 @@
           }
         }
       }
+    },
+    "/linkedin/geo-id-search": {
+      "get": {
+        "summary": "Search LinkedIn Geo ID",
+        "description": "Search LinkedIn Geo ID by location text",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Location text to search for Geo ID (required)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Geo ID search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "geoId": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/post-search": {
+      "get": {
+        "summary": "Search LinkedIn posts",
+        "description": "Search LinkedIn posts by keywords, author, date range, and more.",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Keywords to search for in posts",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "query",
+            "description": "Filter posts by author's profile ID or IDs (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyId",
+            "in": "query",
+            "description": "Filter posts by company ID or IDs (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postedLimit",
+            "in": "query",
+            "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Sort by field. Supported values: 'relevance', 'date'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostShort"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string"
+                        },
+                        "profileId": {
+                          "type": "string"
+                        },
+                        "companyId": {
+                          "type": "string"
+                        },
+                        "postedLimit": {
+                          "type": "string"
+                        },
+                        "sortBy": {
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -639,6 +830,9 @@
         "required": ["publicIdentifier"],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "publicIdentifier": {
             "type": "string"
           },
@@ -652,6 +846,9 @@
             "type": "string"
           },
           "about": {
+            "type": "string"
+          },
+          "linkedinUrl": {
             "type": "string"
           },
           "photo": {
@@ -899,6 +1096,9 @@
         "required": ["publicIdentifier"],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "publicIdentifier": {
             "type": "string"
           },
@@ -913,6 +1113,12 @@
           },
           "url": {
             "type": "string"
+          },
+          "photo": {
+            "type": "string"
+          },
+          "hiddenDueToPrivacySettings": {
+            "type": "boolean"
           }
         }
       },
@@ -1404,38 +1610,200 @@
             "properties": {
               "linkedinText": {
                 "type": "string"
-              },
-              "parsed": {
-                "type": "object",
-                "properties": {
-                  "text": {
-                    "type": "string"
-                  },
-                  "countryCode": {
-                    "type": "string"
-                  },
-                  "regionCode": {
-                    "type": "string",
-                    "format": "nullable"
-                  },
-                  "country": {
-                    "type": "string"
-                  },
-                  "countryFull": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  },
-                  "city": {
-                    "type": "string"
-                  }
-                }
               }
             }
           },
           "easyApply": {
             "type": "boolean"
+          }
+        }
+      },
+      "PostShort": {
+        "required": ["id"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subtitle": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "linkLabel": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "authorUniversalName": {
+            "type": "string",
+            "format": "nullable"
+          },
+          "authorPublicIdentifier": {
+            "type": "string",
+            "format": "nullable"
+          },
+          "authorType": {
+            "type": "string"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "authorLinkedinUrl": {
+            "type": "string"
+          },
+          "authorPosition": {
+            "type": "string"
+          },
+          "authorWebsite": {
+            "type": "string",
+            "format": "nullable"
+          },
+          "authorWebsiteLabel": {
+            "type": "string",
+            "format": "nullable"
+          },
+          "authorAvatar": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "height": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "expiresAt": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          "postedAgo": {
+            "type": "string"
+          },
+          "postImage": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "height": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "expiresAt": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          "repostId": {
+            "type": "string",
+            "format": "nullable"
+          },
+          "repost": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PostShort"
+              }
+            ]
+          },
+          "newsletterUrl": {
+            "type": "string"
+          },
+          "newsletterTitle": {
+            "type": "string"
+          },
+          "socialContent": {
+            "type": "object",
+            "properties": {
+              "hideCommentsCount": {
+                "type": "boolean"
+              },
+              "hideReactionsCount": {
+                "type": "boolean"
+              },
+              "hideSocialActivityCounts": {
+                "type": "boolean"
+              },
+              "hideShareAction": {
+                "type": "boolean"
+              },
+              "hideSendAction": {
+                "type": "boolean"
+              },
+              "hideRepostsCount": {
+                "type": "boolean"
+              },
+              "hideViewsCount": {
+                "type": "boolean"
+              },
+              "hideReactAction": {
+                "type": "boolean"
+              },
+              "hideCommentAction": {
+                "type": "boolean"
+              },
+              "shareUrl": {
+                "type": "string"
+              },
+              "showContributionExperience": {
+                "type": "boolean"
+              },
+              "showSocialDetail": {
+                "type": "boolean"
+              }
+            }
+          },
+          "engagement": {
+            "type": "object",
+            "properties": {
+              "likes": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "comments": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "shares": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "reactions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
