@@ -7,7 +7,7 @@
     "dev": "mintlify dev --port 3333"
   },
   "dependencies": {
-    "mintlify": "^4.0.383"
+    "mintlify": "4.0.383"
   },
   "devDependencies": {},
   "keywords": [],
