@@ -53,7 +53,7 @@
       "anchors": [
         {
           "anchor": "Community",
-          "href": "https://discord.gg/FDeQZJkYgU",
+          "href": "https://discord.gg/VDKqUqFJ",
           "icon": "discord"
         }
       ]
@@ -67,7 +67,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "https://discord.gg/FDeQZJkYgU"
+        "href": "https://discord.gg/VDKqUqFJ"
       }
     ],
     "primary": {
@@ -84,7 +84,7 @@
           { "label": "Pricing", "href": "https://harvestapi.net/#pricing" },
           { "label": "Documentation", "href": "https://docs.harvestapi.net" },
           { "label": "Dashboard", "href": "https://harvestapi.net/admin/dashboard" },
-          { "label": "Community ", "href": "https://discord.gg/FDeQZJkYgU" }
+          { "label": "Community ", "href": "https://discord.gg/VDKqUqFJ" }
         ]
       },
       {

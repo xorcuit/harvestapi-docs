@@ -14,9 +14,11 @@ const params = new URLSearchParams({
   companyId: '1441', // Google
   location: 'US',
   sortBy: 'date',
-  workplaceType: 'hybrid',
-  postedLastMonth: 'true',
+  workplaceType: 'hybrid,remote',
+  employmentType: 'full-time',
+  postedLimit: 'month',
   page: '1',
+  salary: '100k+',
 });
 fetch(`https://harvestapi.net/api/linkedin/job-search?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
@@ -27,14 +29,14 @@ fetch(`https://harvestapi.net/api/linkedin/job-search?${params.toString()}`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://harvestapi.net/api/linkedin/job-search?search=Software%20Engineer&companyId=1441&location=US&sortBy=date&workplaceType=hybrid&postedLastMonth=true&page=1 \
+  --url https://harvestapi.net/api/linkedin/job-search?search=Software%20Engineer&companyId=1441&location=US&sortBy=date&workplaceType=hybrid&postedLimit=month&page=1 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://harvestapi.net/api/linkedin/job-search?search=Software%20Engineer&companyId=1441&location=US&sortBy=date&workplaceType=hybrid&postedLastMonth=true&page=1"
+url = "https://harvestapi.net/api/linkedin/job-search?search=Software%20Engineer&companyId=1441&location=US&sortBy=date&workplaceType=hybrid&postedLimit=month&page=1"
 
 headers = {"X-API-Key": "<api-key>"}
 

@@ -11,6 +11,7 @@ import GeoIdSnippet from '/snippets/geo-id.mdx';
 const params = new URLSearchParams({
   search: 'Google',
   location: 'Australia',
+  companySize: '11-50,51-200,201-500',
   page: '1',
 });
 fetch(`https://harvestapi.net/api/linkedin/company-search?${params.toString()}`, {

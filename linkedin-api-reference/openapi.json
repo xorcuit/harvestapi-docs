@@ -309,6 +309,14 @@
             }
           },
           {
+            "name": "companySize",
+            "in": "query",
+            "description": "Filter by company size. One value or multiple comma-separated. Supported values: '1-10', '11-50', '51-200', '201-500', '501-1000', '1001-5000', '5001-10000', '10001+'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "description": "Page number for pagination.",
@@ -354,6 +362,9 @@
                           "type": "string"
                         },
                         "geoId": {
+                          "type": "string"
+                        },
+                        "companySize": {
                           "type": "string"
                         }
                       }
@@ -513,15 +524,31 @@
           {
             "name": "workplaceType",
             "in": "query",
-            "description": "Filter by workplace type. Supported values: 'office', 'hybrid', 'remote'",
+            "description": "Filter by workplace type. One or multiple values comma-separated. Supported values: 'office', 'hybrid', 'remote'",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "postedLastMonth",
+            "name": "employmentType",
             "in": "query",
-            "description": "Filter by jobs only posted in the last month. Supported values: 'true', 'false'",
+            "description": "Filter by employment type. One or multiple values comma-separated. Supported values: 'full-time', 'part-time', 'contract', 'temporary', 'internship'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salary",
+            "in": "query",
+            "description": "Filter by salary range. Supported values: '40k+', '60k+', '80k+', '100k+', '120k+', '140k+', '160k+', '180k+', '200k+'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postedLimit",
+            "in": "query",
+            "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'",
             "schema": {
               "type": "string"
             }
@@ -581,7 +608,7 @@
                         "workplaceType": {
                           "type": "string"
                         },
-                        "postedLastMonth": {
+                        "postedLimit": {
                           "type": "string"
                         },
                         "page": {
