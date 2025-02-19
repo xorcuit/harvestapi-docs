@@ -1136,7 +1136,12 @@
             "type": "string"
           },
           "location": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "linkedinText": {
+                "type": "string"
+              }
+            }
           },
           "url": {
             "type": "string"
@@ -1466,7 +1471,12 @@
             "type": "string"
           },
           "location": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "linkedinText": {
+                "type": "string"
+              }
+            }
           },
           "followers": {
             "type": "string"
@@ -1573,6 +1583,9 @@
             "type": "string"
           },
           "companyLink": {
+            "type": "string"
+          },
+          "companyUniversalName": {
             "type": "string"
           },
           "salaryText": {
