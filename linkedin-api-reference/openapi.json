@@ -1149,7 +1149,7 @@
           "photo": {
             "type": "string"
           },
-          "hiddenDueToPrivacySettings": {
+          "hidden": {
             "type": "boolean"
           }
         }
