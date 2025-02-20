@@ -501,7 +501,7 @@
           {
             "name": "companyId",
             "in": "query",
-            "description": "Filter by company ID",
+            "description": "Filter by company ID. One value or multiple comma-separated.",
             "schema": {
               "type": "string"
             }
