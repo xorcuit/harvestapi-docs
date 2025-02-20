@@ -118,7 +118,16 @@
             "name": "companyId",
             "in": "query",
             "required": false,
-            "description": "Filter by company ID",
+            "description": "Filter by company ID. One value or multiple comma-separated",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "schoolId",
+            "in": "query",
+            "required": false,
+            "description": "Filter by school ID. One value or multiple comma-separated",
             "schema": {
               "type": "string"
             }
