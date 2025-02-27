@@ -15,7 +15,7 @@ const params = new URLSearchParams({
   location: 'Australia',
   page: '1',
 });
-fetch(`https://harvestapi.net/api/linkedin/profile-search?${params.toString()}`, {
+fetch(`https://api.harvestapi.net/linkedin/profile-search?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -24,14 +24,14 @@ fetch(`https://harvestapi.net/api/linkedin/profile-search?${params.toString()}`,
 
 ```bash cURL
 curl --request GET \
-  --url https://harvestapi.net/api/linkedin/profile-search?search=Mark&companyId=1441&location=Australia&page=1 \
+  --url https://api.harvestapi.net/linkedin/profile-search?search=Mark&companyId=1441&location=Australia&page=1 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://harvestapi.net/api/linkedin/profile-search?search=Mark&companyId=1441&location=Australia&page=1"
+url = "https://api.harvestapi.net/linkedin/profile-search?search=Mark&companyId=1441&location=Australia&page=1"
 
 headers = {"X-API-Key": "<api-key>"}
 

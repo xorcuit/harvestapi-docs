@@ -8,7 +8,7 @@ const params = new URLSearchParams({
   apiKey: '<api-key>',
 });
 
-fetch(`https://harvestapi.net/api/linkedin/profile?${params.toString()}`)
+fetch(`https://api.harvestapi.net/linkedin/profile?${params.toString()}`)
   .then((res) => res.json())
   .then((data) => {
     console.log(`Bill Gates profile ID: ${data.id}`);
@@ -17,14 +17,14 @@ fetch(`https://harvestapi.net/api/linkedin/profile?${params.toString()}`)
 
 ```bash cURL
 curl --request GET \
-  --url 'https://harvestapi.net/api/linkedin/profile?url=https://www.linkedin.com/in/williamhgates' \
+  --url 'https://api.harvestapi.net/linkedin/profile?url=https://www.linkedin.com/in/williamhgates' \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://harvestapi.net/api/linkedin/profile?url=https://www.linkedin.com/in/williamhgates"
+url = "https://api.harvestapi.net/linkedin/profile?url=https://www.linkedin.com/in/williamhgates"
 
 headers = {"X-API-Key": "<api-key>"}
 

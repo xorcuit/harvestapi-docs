@@ -23,7 +23,7 @@ To authenticate your requests, include your API key in the request headers.
 
 ## Making API Requests
 
-All API requests are made to the following base URL: `https://harvestapi.net/api`
+All API requests are made to the following base URL: `https://api.harvestapi.net`
 
 For example, company search by keyword
 
@@ -31,12 +31,12 @@ For example, company search by keyword
 
 ```bash cURL
 curl --request GET \
-  --url https://harvestapi.net/api/linkedin/company-search?search=Google \
+  --url https://api.harvestapi.net/linkedin/company-search?search=Google \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```javascript JavaScript
-fetch(`https://harvestapi.net/api/linkedin/company-search?search=Google`, {
+fetch(`https://api.harvestapi.net/linkedin/company-search?search=Google`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -46,7 +46,7 @@ fetch(`https://harvestapi.net/api/linkedin/company-search?search=Google`, {
 ```python Python
 import requests
 
-url = "https://harvestapi.net/api/linkedin/company-search?search=Google"
+url = "https://api.harvestapi.net/linkedin/company-search?search=Google"
 
 headers = {"X-API-Key": "<api-key>"}
 
