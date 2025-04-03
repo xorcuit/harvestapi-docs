@@ -73,7 +73,7 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://harvestapi.net/admin/dashboard"
+      "href": "https://harvest-api.com/admin/dashboard"
     }
   },
   "footer": {
@@ -81,19 +81,19 @@
       {
         "header": "Product",
         "items": [
-          { "label": "Pricing", "href": "https://harvestapi.net/#pricing" },
-          { "label": "Documentation", "href": "https://docs.harvestapi.net" },
-          { "label": "Dashboard", "href": "https://harvestapi.net/admin/dashboard" },
+          { "label": "Pricing", "href": "https://harvest-api.com/#pricing" },
+          { "label": "Documentation", "href": "https://docs.harvest-api.com" },
+          { "label": "Dashboard", "href": "https://harvest-api.com/admin/dashboard" },
           { "label": "Community ", "href": "https://discord.gg/TGA9k9u2gE" }
         ]
       },
       {
         "header": "Legal",
         "items": [
-          { "label": "Terms of Service", "href": "https://harvestapi.net/info/terms-of-service" },
-          { "label": "Privacy Policy", "href": "https://harvestapi.net/info/privacy-policy" },
-          { "label": "Cookie Policy", "href": "https://harvestapi.net/info/cookie-policy" },
-          { "label": "Refund Policy", "href": "https://harvestapi.net/info/refund-policy" }
+          { "label": "Terms of Service", "href": "https://harvest-api.com/info/terms-of-service" },
+          { "label": "Privacy Policy", "href": "https://harvest-api.com/info/privacy-policy" },
+          { "label": "Cookie Policy", "href": "https://harvest-api.com/info/cookie-policy" },
+          { "label": "Refund Policy", "href": "https://harvest-api.com/info/refund-policy" }
         ]
       }
     ]

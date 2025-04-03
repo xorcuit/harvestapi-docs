@@ -11,7 +11,7 @@ const params = new URLSearchParams({
   // universalName: 'google', // by universalName alternatively
 });
 
-fetch(`https://api.harvestapi.net/linkedin/profile?${params.toString()}`, {
+fetch(`https://api.harvest-api.com/linkedin/profile?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -20,14 +20,14 @@ fetch(`https://api.harvestapi.net/linkedin/profile?${params.toString()}`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvestapi.net/linkedin/profile?universalName=google \
+  --url https://api.harvest-api.com/linkedin/profile?universalName=google \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvestapi.net/linkedin/profile?universalName=google"
+url = "https://api.harvest-api.com/linkedin/profile?universalName=google"
 
 headers = {"X-API-Key": "<api-key>"}
 

@@ -10,7 +10,7 @@ To authenticate your requests, include your API key in the request headers.
 1. **Obtain Your API Key**:
 
    - Log in to your HarvestAPI account.
-   - Navigate to the [API keys Dashboard](https://harvestapi.net/admin/api-keys).
+   - Navigate to the [API keys Dashboard](https://harvest-api.com/admin/api-keys).
    - Create new API key.
 
 2. **Include API Key in Request Headers**:
@@ -23,7 +23,7 @@ To authenticate your requests, include your API key in the request headers.
 
 ## Making API Requests
 
-All API requests are made to the following base URL: `https://api.harvestapi.net`
+All API requests are made to the following base URL: `https://api.harvest-api.com`
 
 For example, company search by keyword
 
@@ -31,12 +31,12 @@ For example, company search by keyword
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvestapi.net/linkedin/company-search?search=Google \
+  --url https://api.harvest-api.com/linkedin/company-search?search=Google \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```javascript JavaScript
-fetch(`https://api.harvestapi.net/linkedin/company-search?search=Google`, {
+fetch(`https://api.harvest-api.com/linkedin/company-search?search=Google`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -46,7 +46,7 @@ fetch(`https://api.harvestapi.net/linkedin/company-search?search=Google`, {
 ```python Python
 import requests
 
-url = "https://api.harvestapi.net/linkedin/company-search?search=Google"
+url = "https://api.harvest-api.com/linkedin/company-search?search=Google"
 
 headers = {"X-API-Key": "<api-key>"}
 

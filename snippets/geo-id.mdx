@@ -13,7 +13,7 @@ GeoID search is free, it will not count against your quota.
 ```javascript JavaScript
 const apiKey = '<api-key>';
 
-fetch(`https://api.harvestapi.net/linkedin/geo-id-search?search=New York`, {
+fetch(`https://api.harvest-api.com/linkedin/geo-id-search?search=New York`, {
   headers: { 'X-API-Key': apiKey },
 })
   .then((response) => response.json())
@@ -26,7 +26,7 @@ fetch(`https://api.harvestapi.net/linkedin/geo-id-search?search=New York`, {
       geoId: data.id,
       apiKey,
     });
-    fetch(`https://api.harvestapi.net/linkedin/profile-search?${params.toString()}`)
+    fetch(`https://api.harvest-api.com/linkedin/profile-search?${params.toString()}`)
       .then((response) => response.json())
       .then((data) => console.log(data));
   });
@@ -34,14 +34,14 @@ fetch(`https://api.harvestapi.net/linkedin/geo-id-search?search=New York`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvestapi.net/linkedin/geo-id-search?search=New%20York \
+  --url https://api.harvest-api.com/linkedin/geo-id-search?search=New%20York \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvestapi.net/linkedin/geo-id-search?search=New York"
+url = "https://api.harvest-api.com/linkedin/geo-id-search?search=New York"
 
 headers = {"X-API-Key": "<api-key>"}
 

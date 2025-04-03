@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://api.harvestapi.net"
+      "url": "https://api.harvest-api.com"
     }
   ],
   "security": [

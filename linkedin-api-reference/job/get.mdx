@@ -11,7 +11,7 @@ const params = new URLSearchParams({
   // jobId: '4153069088', // by jobId alternatively
 });
 
-fetch(`https://api.harvestapi.net/linkedin/job?${params.toString()}`, {
+fetch(`https://api.harvest-api.com/linkedin/job?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -20,14 +20,14 @@ fetch(`https://api.harvestapi.net/linkedin/job?${params.toString()}`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvestapi.net/linkedin/job?jobId=4153069088 \
+  --url https://api.harvest-api.com/linkedin/job?jobId=4153069088 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvestapi.net/linkedin/job?jobId=4153069088"
+url = "https://api.harvest-api.com/linkedin/job?jobId=4153069088"
 
 headers = {"X-API-Key": "<api-key>"}
 
