@@ -914,22 +914,38 @@
           "location": {
             "type": "object",
             "properties": {
-              "preferredGeoPlace": {
-                "type": "string",
-                "format": "nullable"
+              "linkedinText": {
+                "type": "string"
               },
               "countryCode": {
                 "type": "string"
               },
-              "postalCode": {
-                "type": "string",
-                "format": "nullable"
-              },
-              "country": {
-                "type": "string"
-              },
-              "countryFull": {
-                "type": "string"
+              "parsed": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "countryCode": {
+                    "type": "string"
+                  },
+                  "regionCode": {
+                    "type": "string",
+                    "format": "nullable"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "countryFull": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  }
+                }
               }
             }
           },
@@ -969,10 +985,36 @@
                   "type": "string"
                 },
                 "startDate": {
-                  "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "string",
+                      "format": "nullable"
+                    },
+                    "year": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "endDate": {
-                  "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "string",
+                      "format": "nullable"
+                    },
+                    "year": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "employmentType": {
                   "type": "string"
@@ -995,15 +1037,41 @@
                   "type": "string"
                 },
                 "startDate": {
-                  "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "string",
+                      "format": "nullable"
+                    },
+                    "year": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "endDate": {
-                  "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "string",
+                      "format": "nullable"
+                    },
+                    "year": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
           },
-          "certificates": {
+          "certifications": {
             "type": "array",
             "items": {
               "type": "object",
@@ -1078,6 +1146,38 @@
                 },
                 "description": {
                   "type": "string"
+                },
+                "startDate": {
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "string",
+                      "format": "nullable"
+                    },
+                    "year": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "endDate": {
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "string",
+                      "format": "nullable"
+                    },
+                    "year": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
