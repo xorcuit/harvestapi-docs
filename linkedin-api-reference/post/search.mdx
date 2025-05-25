@@ -42,3 +42,38 @@ print(response.text)
 ```
 
 </CodeGroup>
+
+## Search posts from all Google employees
+
+<CodeGroup>
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  authorsCompany: 'https://www.linkedin.com/company/google',
+});
+fetch(`https://api.harvest-api.com/linkedin/post-search?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+```bash cURL
+curl --request GET \
+  --url https://api.harvest-api.com/linkedin/post-search?authorsCompany=https://www.linkedin.com/company/google \
+  --header 'X-API-Key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://api.harvest-api.com/linkedin/post-search?authorsCompany=https://www.linkedin.com/company/google"
+
+headers = {"X-API-Key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+</CodeGroup>

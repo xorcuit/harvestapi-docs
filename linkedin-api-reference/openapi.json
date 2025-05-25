@@ -240,6 +240,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Company name. It will use LinkedIn search and return the most relevant result.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -728,9 +736,25 @@
             }
           },
           {
+            "name": "profile",
+            "in": "query",
+            "description": "Filter posts by author's profile URL (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "profileId",
             "in": "query",
-            "description": "Filter posts by author's profile ID or IDs (comma-separated)",
+            "description": "Filter posts by author's profile ID or IDs (comma-separated). It's faster to search by ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "company",
+            "in": "query",
+            "description": "Filter posts by this company URL or URLs (comma-separated)",
             "schema": {
               "type": "string"
             }
@@ -738,7 +762,23 @@
           {
             "name": "companyId",
             "in": "query",
-            "description": "Filter posts by company ID or IDs (comma-separated)",
+            "description": "Filter posts by company ID or IDs (comma-separated). It's faster to search by ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorsCompany",
+            "in": "query",
+            "description": "List of LinkedIn companies where authors of posts work (comma-separated)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorsCompanyId",
+            "in": "query",
+            "description": "List of LinkedIn company IDs where authors of posts work (comma-separated)",
             "schema": {
               "type": "string"
             }
@@ -833,6 +873,154 @@
           }
         }
       }
+    },
+
+    "/linkedin/post-comments": {
+      "get": {
+        "summary": "Get comments of LinkedIn post",
+        "description": "Get comments of LinkedIn post by post URL.",
+        "parameters": [
+          {
+            "name": "post",
+            "in": "query",
+            "description": "URL of the LinkedIn post (required)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Sort comments by field. Supported values: 'relevance', 'date'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination. Each page contains 20 comments. Default is 1",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Required only if sortBy is 'relevance' and page > 1. Use this token from first page response.",
+            "schema": {
+              "type": "string",
+              "format": "nullable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post comments response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostComment"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/post-reactions": {
+      "get": {
+        "summary": "Get reactions of LinkedIn post",
+        "description": "Get reactions of LinkedIn post by post URL.",
+        "parameters": [
+          {
+            "name": "post",
+            "in": "query",
+            "description": "URL of the LinkedIn post (required)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination. Each page contains 20 reactions. Default is 1",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post reactions response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostReaction"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -859,6 +1047,10 @@
           "pageSize": {
             "type": "integer",
             "format": "int32"
+          },
+          "paginationToken": {
+            "type": "string",
+            "format": "nullable"
           }
         }
       },
@@ -1252,7 +1444,7 @@
               }
             }
           },
-          "url": {
+          "linkedinUrl": {
             "type": "string"
           },
           "photo": {
@@ -1285,7 +1477,7 @@
           "linkedinUrl": {
             "type": "string"
           },
-          "logoUrl": {
+          "logo": {
             "type": "string"
           },
           "foundedOn": {
@@ -1427,7 +1619,7 @@
               "type": "string"
             }
           },
-          "industry": {
+          "industries": {
             "type": "array",
             "items": {
               "type": "string"
@@ -1576,7 +1768,7 @@
           "name": {
             "type": "string"
           },
-          "industry": {
+          "industries": {
             "type": "string"
           },
           "location": {
@@ -1596,7 +1788,7 @@
           "logo": {
             "type": "string"
           },
-          "url": {
+          "linkedinUrl": {
             "type": "string"
           },
           "universalName": {
@@ -1614,7 +1806,7 @@
           "title": {
             "type": "string"
           },
-          "url": {
+          "linkedinUrl": {
             "type": "string"
           },
           "jobState": {
@@ -1697,17 +1889,22 @@
           "companyUniversalName": {
             "type": "string"
           },
-          "salaryText": {
-            "type": "string"
-          },
-          "salaryMin": {
-            "type": "string"
-          },
-          "salaryMax": {
-            "type": "string"
-          },
-          "salaryCurrency": {
-            "type": "string"
+          "salary": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "string"
+              },
+              "max": {
+                "type": "string"
+              },
+              "currency": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              }
+            }
           },
           "views": {
             "type": "integer",
@@ -1735,7 +1932,7 @@
           "id": {
             "type": "string"
           },
-          "url": {
+          "linkedinUrl": {
             "type": "string"
           },
           "title": {
@@ -1777,89 +1974,121 @@
           "content": {
             "type": "string"
           },
-          "title": {
+          "linkedinUrl": {
             "type": "string"
           },
-          "subtitle": {
-            "type": "string"
-          },
-          "link": {
-            "type": "string"
-          },
-          "linkLabel": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "authorUniversalName": {
-            "type": "string",
-            "format": "nullable"
-          },
-          "authorPublicIdentifier": {
-            "type": "string",
-            "format": "nullable"
-          },
-          "authorType": {
-            "type": "string"
-          },
-          "authorName": {
-            "type": "string"
-          },
-          "authorLinkedinUrl": {
-            "type": "string"
-          },
-          "authorPosition": {
-            "type": "string"
-          },
-          "authorWebsite": {
-            "type": "string",
-            "format": "nullable"
-          },
-          "authorWebsiteLabel": {
-            "type": "string",
-            "format": "nullable"
-          },
-          "authorAvatar": {
+          "author": {
             "type": "object",
             "properties": {
-              "url": {
+              "publicIdentifier": {
                 "type": "string"
               },
-              "width": {
-                "type": "integer",
-                "format": "int32"
+              "universalName": {
+                "type": "string"
               },
-              "height": {
-                "type": "integer",
-                "format": "int32"
+              "name": {
+                "type": "string"
               },
-              "expiresAt": {
-                "type": "integer",
-                "format": "int64"
+              "linkedinUrl": {
+                "type": "string"
+              },
+              "type": {
+                "type": "boolean"
+              },
+              "info": {
+                "type": "boolean"
+              },
+              "website": {
+                "type": "boolean"
+              },
+              "websiteLabel": {
+                "type": "boolean"
+              },
+              "avatar": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "height": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "expiresAt": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
               }
             }
           },
           "postedAgo": {
             "type": "string"
           },
-          "postImage": {
+          "postImages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "height": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "expiresAt": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "article": {
             "type": "object",
             "properties": {
-              "url": {
+              "title": {
                 "type": "string"
               },
-              "width": {
-                "type": "integer",
-                "format": "int32"
+              "subtitle": {
+                "type": "string"
               },
-              "height": {
-                "type": "integer",
-                "format": "int32"
+              "link": {
+                "type": "string"
               },
-              "expiresAt": {
-                "type": "integer",
-                "format": "int64"
+              "linkLabel": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "image": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "height": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "expiresAt": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
               }
             }
           },
@@ -1874,6 +2103,20 @@
                 "$ref": "#/components/schemas/PostShort"
               }
             ]
+          },
+          "repostedBy": {
+            "type": "object",
+            "properties": {
+              "publicIdentifier": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "linkedinUrl": {
+                "type": "string"
+              }
+            }
           },
           "newsletterUrl": {
             "type": "string"
@@ -1955,6 +2198,258 @@
             }
           }
         }
+      },
+      "PostReaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the reaction.",
+            "example": "urn:li:fsd_reaction:(urn:li:fsd_profile:ACoAAFsSba4BjCtAJXsUcfwXs0LPljAa2PsGpc8,urn:li:activity:7330681775884533760,0)"
+          },
+          "reactionType": {
+            "type": "string",
+            "description": "The type of reaction.",
+            "example": "LIKE"
+          },
+          "postId": {
+            "type": "string",
+            "description": "The ID of the post that was reacted to.",
+            "example": "7330681775884533760"
+          },
+          "actor": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique identifier for the actor.",
+                "example": "ACoAAFsSba4BjCtAJXsUcfwXs0LPljAa2PsGpc8"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the actor.",
+                "example": "Om More"
+              },
+              "linkedinUrl": {
+                "type": "string",
+                "format": "url",
+                "description": "The LinkedIn profile URL of the actor.",
+                "example": "https://www.linkedin.com/in/ACoAAFsSba4BjCtAJXsUcfwXs0LPljAa2PsGpc8"
+              },
+              "position": {
+                "type": "string",
+                "description": "The current position of the actor.",
+                "example": "Student at Yashwantrao Mohite College of Arts, Science and Commerce, Pune"
+              },
+              "pictureUrl": {
+                "type": "string",
+                "format": "url",
+                "description": "The URL of the actor's profile picture.",
+                "example": "https://media.licdn.com/dms/image/v2/D4E03AQEjFjWHGRTC2Q/profile-displayphoto-shrink_800_800/B4EZcG0eZVHAAc-/0/1748166110665?e=1753920000&v=beta&t=HOMnbBij0Z_MV2RvUu5zLKCpOaN8Cbnh72uqaH99ZLA"
+              },
+              "picture": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "url",
+                    "description": "The URL of the picture.",
+                    "example": "https://media.licdn.com/dms/image/v2/D4E03AQEjFjWHGRTC2Q/profile-displayphoto-shrink_800_800/B4EZcG0eZVHAAc-/0/1748166110665?e=1753920000&v=beta&t=HOMnbBij0Z_MV2RvUu5zLKCpOaN8Cbnh72uqaH99ZLA"
+                  },
+                  "width": {
+                    "type": "integer",
+                    "description": "The width of the picture in pixels.",
+                    "example": 800
+                  },
+                  "height": {
+                    "type": "integer",
+                    "description": "The height of the picture in pixels.",
+                    "example": 800
+                  },
+                  "expiresAt": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The expiration timestamp of the picture URL in milliseconds since epoch.",
+                    "example": 1753920000000
+                  }
+                },
+                "required": ["url", "width", "height", "expiresAt"]
+              }
+            },
+            "required": ["id", "name", "linkedinUrl"]
+          }
+        },
+        "required": ["id", "reactionType", "postId", "actor"]
+      },
+      "PostComment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the comment.",
+            "example": "7330012053861998592"
+          },
+          "linkedinUrl": {
+            "type": "string",
+            "format": "url",
+            "description": "The direct URL to the comment on LinkedIn.",
+            "example": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7329991434395160578?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7329991434395160578%2C7330012053861998592%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287330012053861998592%2Curn%3Ali%3AugcPost%3A7329991434395160578%29"
+          },
+          "commentary": {
+            "type": "string",
+            "description": "The text content of the comment.",
+            "example": "Exciting 🔥"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO 8601 timestamp of when the comment was created.",
+            "example": "2025-05-18T23:30:58.680Z"
+          },
+          "numComments": {
+            "type": "integer",
+            "description": "The number of replies to this comment.",
+            "example": 0
+          },
+          "numShares": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The number of times this comment has been shared (often null for comments).",
+            "example": null
+          },
+          "numImpressions": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The number of impressions for this comment (often null).",
+            "example": null
+          },
+          "reactionTypeCounts": {
+            "type": "array",
+            "description": "A list of reaction types and their counts for this comment.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "The type of reaction.",
+                  "enum": ["LIKE", "EMPATHY", "PRAISE", "INTEREST", "MAYBE"],
+                  "example": "LIKE"
+                },
+                "count": {
+                  "type": "integer",
+                  "description": "The number of this type of reaction.",
+                  "example": 1
+                }
+              },
+              "required": ["type", "count"]
+            }
+          },
+          "postId": {
+            "type": "string",
+            "description": "The ID of the post to which this comment belongs.",
+            "example": "7329991434395160578"
+          },
+          "actor": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique identifier for the actor who made the comment.",
+                "example": "ACoAABLGFg4BRMcDx84MmyU8X-Jqcw9wKCA1QxU"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the actor.",
+                "example": "Harshavardhan G H"
+              },
+              "linkedinUrl": {
+                "type": "string",
+                "format": "url",
+                "description": "The LinkedIn profile URL of the actor.",
+                "example": "https://www.linkedin.com/in/harshavardhangh"
+              },
+              "position": {
+                "type": "string",
+                "description": "The current position or headline of the actor.",
+                "example": "Business Analyst | Data-Driven Decision Maker | 5+ Years of Experience in Municipal Data Systems & Public Sector Projects | Passionate About Driving Innovation in Local Governance | Always Exploring New Technologies"
+              },
+              "pictureUrl": {
+                "type": "string",
+                "format": "url",
+                "description": "The URL of the actor's profile picture.",
+                "example": "https://media.licdn.com/dms/image/v2/D5603AQF38AglH7bh-A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730799919024?e=1753920000&v=beta&t=Jo-oVn--3ftKSEMtrITF0b3_UG97a0n401-ztV_9Gac"
+              },
+              "picture": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "url",
+                    "description": "The URL of the picture.",
+                    "example": "https://media.licdn.com/dms/image/v2/D5603AQF38AglH7bh-A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730799919024?e=1753920000&v=beta&t=Jo-oVn--3ftKSEMtrITF0b3_UG97a0n401-ztV_9Gac"
+                  },
+                  "width": {
+                    "type": "integer",
+                    "description": "The width of the picture in pixels.",
+                    "example": 800
+                  },
+                  "height": {
+                    "type": "integer",
+                    "description": "The height of the picture in pixels.",
+                    "example": 800
+                  },
+                  "expiresAt": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The expiration timestamp of the picture URL in milliseconds since epoch.",
+                    "example": 1753920000000
+                  }
+                },
+                "required": ["url", "width", "height", "expiresAt"]
+              },
+              "author": {
+                "type": "boolean",
+                "description": "Indicates if the actor is the original author of the parent post.",
+                "example": false
+              }
+            },
+            "required": ["id", "name", "linkedinUrl", "author"]
+          },
+          "createdAtTimestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The timestamp of when the comment was created, in milliseconds since epoch.",
+            "example": 1747611058680
+          },
+          "pinned": {
+            "type": "boolean",
+            "description": "Indicates if the comment is pinned.",
+            "example": false
+          },
+          "contributed": {
+            "type": "boolean",
+            "description": "Indicates if the actor is a contributor to the content (e.g., a group admin or page role).",
+            "example": false
+          },
+          "edited": {
+            "type": "boolean",
+            "description": "Indicates if the comment has been edited.",
+            "example": false
+          }
+        },
+        "required": [
+          "id",
+          "linkedinUrl",
+          "commentary",
+          "createdAt",
+          "numComments",
+          "postId",
+          "actor",
+          "createdAtTimestamp",
+          "pinned",
+          "contributed",
+          "edited"
+        ]
       },
       "Error": {
         "required": ["error", "message"],

@@ -1,0 +1,38 @@
+---
+title: 'Post reactions'
+openapi: 'GET /linkedin/post-reactions'
+---
+
+<CodeGroup>
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  post: 'https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7?utm_source=share&utm_medium=member_desktop&rcm=ACoAACzazy4B3ajZsA0WxWr6m4S77iItYbYCLZM',
+  // post: 'https://www.linkedin.com/feed/update/urn:li:activity:7320867199693246465/' // Or Activity URL
+});
+fetch(`https://api.harvest-api.com/linkedin/post-reactions/post-reactions?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+```bash cURL
+curl --request GET \
+  --url https://api.harvest-api.com/linkedin/post-reactions?post=https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7?utm_source=share&utm_medium=member_desktop&rcm=ACoAACzazy4B3ajZsA0WxWr6m4S77iItYbYCLZM \
+  --header 'X-API-Key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://api.harvest-api.com/linkedin/post-reactions?post=https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7?utm_source=share&utm_medium=member_desktop&rcm=ACoAACzazy4B3ajZsA0WxWr6m4S77iItYbYCLZM"
+
+headers = {"X-API-Key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+</CodeGroup>

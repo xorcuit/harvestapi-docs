@@ -39,7 +39,9 @@
             "pages": [
               "linkedin-api-reference/post/search",
               "linkedin-api-reference/post/company-posts",
-              "linkedin-api-reference/post/user-posts"
+              "linkedin-api-reference/post/user-posts",
+              "linkedin-api-reference/post/post-comments",
+              "linkedin-api-reference/post/post-reactions"
             ]
           },
           {

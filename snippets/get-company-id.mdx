@@ -1,5 +1,46 @@
 ## How to get Company ID
 
+#### By company URL or ID
+
+<CodeGroup>
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  query: 'https://www.linkedin.com/company/google',
+  // query: 'google', // 'google' is also accepted as a company ID (last part of the URL)
+  apiKey: '<api-key>',
+});
+
+fetch(`https://api.harvest-api.com/linkedin/company?${params.toString()}`)
+  .then((res) => res.json())
+  .then((data) => {
+    const company = data.element;
+    console.log(`LinkedIn ID for Google: ${company?.id}`);
+  });
+```
+
+```bash cURL
+curl --request GET \
+  --url https://api.harvest-api.com/linkedin/company?query=google \
+  --header 'X-API-Key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://api.harvest-api.com/linkedin/company?query=google"
+
+headers = {"X-API-Key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print("LinkedIn ID for Google: " + response.json()["element"]["id"])
+```
+
+</CodeGroup>
+
+#### By searching for a company name
+
 <CodeGroup>
 
 ```javascript JavaScript
