@@ -48,6 +48,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "short",
+            "in": "query",
+            "description": "Include this parameter to return a short version of the profile (includes name, title, followers and some other info). This version charges less credits",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
