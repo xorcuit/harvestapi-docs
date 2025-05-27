@@ -24,7 +24,7 @@ const firstPage = await fetch(
 ).then((response) => response.json());
 
 params.set('page', '2');
-// paginationToken is required if it was returned by the API. (LinkedIn requires it, otherwise it returns page 1 again)
+// paginationToken is required if it was returned by the API. (LinkedIn requires it in some cases, otherwise it returns page 1 again)
 params.set('paginationToken', firstPage.pagination.paginationToken);
 
 const secondPage = await fetch(
