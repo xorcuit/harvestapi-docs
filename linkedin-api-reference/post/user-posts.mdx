@@ -15,11 +15,24 @@ const params = new URLSearchParams({
   sortBy: 'date',
   page: '1',
 });
-fetch(`https://api.harvest-api.com/linkedin/post-search?${params.toString()}`, {
-  headers: { 'X-API-Key': '<api-key>' },
-})
-  .then((response) => response.json())
-  .then((data) => console.log(data));
+
+const firstPage = await fetch(
+  `https://api.harvest-api.com/linkedin/post-search?${params.toString()}`,
+  {
+    headers: { 'X-API-Key': '<api-key>' },
+  },
+).then((response) => response.json());
+
+params.set('page', '2');
+// paginationToken is required if it was returned by the API. (LinkedIn requires it, otherwise it returns page 1 again)
+params.set('paginationToken', firstPage.pagination.paginationToken);
+
+const secondPage = await fetch(
+  `https://api.harvest-api.com/linkedin/post-search?${params.toString()}`,
+  {
+    headers: { 'X-API-Key': '<api-key>' },
+  },
+).then((response) => response.json());
 ```
 
 ```bash cURL

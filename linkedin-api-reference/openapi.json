@@ -815,6 +815,15 @@
               "type": "integer",
               "default": 1
             }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Required if it was returned by the first page. Otherwise the page will always be 1 (on LinkedIn side). Doesn't apply for all queries, usually profile posts return this token",
+            "schema": {
+              "type": "string",
+              "format": "nullable"
+            }
           }
         ],
         "responses": {
