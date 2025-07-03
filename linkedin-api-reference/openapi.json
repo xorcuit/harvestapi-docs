@@ -56,6 +56,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "findEmail",
+            "in": "query",
+            "description": "Include this parameter to find the email of the profile. This version charges more credits",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
