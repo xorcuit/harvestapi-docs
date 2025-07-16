@@ -24,7 +24,12 @@
         "groups": [
           {
             "group": "LinkedIn Profile",
-            "pages": ["linkedin-api-reference/profile/get", "linkedin-api-reference/profile/search"]
+            "pages": [
+              "linkedin-api-reference/profile/get",
+              "linkedin-api-reference/profile/search",
+              "linkedin-api-reference/profile/profile-comments",
+              "linkedin-api-reference/profile/profile-reactions"
+            ]
           },
           {
             "group": "LinkedIn Company",

@@ -1,0 +1,41 @@
+---
+title: 'Profile comments'
+openapi: 'GET /linkedin/profile-comments'
+---
+
+Get comments on a LinkedIn profile.  
+For example, it will scrape this page: https://www.linkedin.com/in/satyanadella/recent-activity/comments/
+
+<CodeGroup>
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  profile: 'https://www.linkedin.com/in/satyanadella',
+  // profileId: 'ACoAAAEkwwAB9KEc2TrQgOLEQ-vzRyZeCDyc6DQ', // profileId is preferable & faster
+});
+fetch(`https://api.harvest-api.com/linkedin/profile-comments?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+```bash cURL
+curl --request GET \
+  --url https://api.harvest-api.com/linkedin/profile-comments?profile=https://www.linkedin.com/in/satyanadella \
+  --header 'X-API-Key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://api.harvest-api.com/linkedin/profile-comments?profile=https://www.linkedin.com/in/satyanadella"
+
+headers = {"X-API-Key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+</CodeGroup>

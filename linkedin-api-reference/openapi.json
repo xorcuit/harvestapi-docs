@@ -827,7 +827,7 @@
           {
             "name": "paginationToken",
             "in": "query",
-            "description": "Required if it was returned by the first page. Otherwise the page will always be 1 (on LinkedIn side). Doesn't apply for all queries, usually profile posts return this token",
+            "description": "Required if it was returned by the previous page. Otherwise the page will always be 1 (on LinkedIn side). Doesn't apply for all queries, usually profile posts return this token",
             "schema": {
               "type": "string",
               "format": "nullable"
@@ -933,7 +933,7 @@
           {
             "name": "paginationToken",
             "in": "query",
-            "description": "Required only if sortBy is 'relevance' and page > 1. Use this token from first page response.",
+            "description": "Required only if sortBy is 'relevance' and page > 1. Use this token from the previous page response.",
             "schema": {
               "type": "string",
               "format": "nullable"
@@ -1002,6 +1002,179 @@
             "schema": {
               "type": "integer",
               "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post reactions response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostReaction"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/linkedin/profile-comments": {
+      "get": {
+        "summary": "Get comments of LinkedIn profile",
+        "description": "Get comments of LinkedIn profile by post URL.",
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "query",
+            "description": "URL of the LinkedIn profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "query",
+            "description": "Profile ID of the LinkedIn profile. It's faster to search by ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postedLimit",
+            "in": "query",
+            "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination. Each page contains 20 comments. Default is 1",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Required for pages > 1. Use this token from the previous page response.",
+            "schema": {
+              "type": "string",
+              "format": "nullable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile comments response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostComment"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/profile-reactions": {
+      "get": {
+        "summary": "Get reactions of LinkedIn profile",
+        "description": "Get reactions of LinkedIn profile by profile URL.",
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "query",
+            "description": "URL of the LinkedIn profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "query",
+            "description": "Profile ID of the LinkedIn profile. It's faster to search by ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination. Each page contains 20 comments. Default is 1",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Required for pages > 1. Use this token from the previous page response.",
+            "schema": {
+              "type": "string",
+              "format": "nullable"
             }
           }
         ],

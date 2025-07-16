@@ -3,7 +3,7 @@
 While there are no rate limits on the number of requests you can make per minute, there are concurrency limits based on your subscription plan:
 
 - Free Account: Maximum of 1 concurrent request.
-- Basic Plan: Maximum of 8 concurrent requests.
+- Basic Plan: Maximum of 6 concurrent requests.
 
 To check your current concurrency limits:
 
@@ -11,10 +11,17 @@ To check your current concurrency limits:
 - Navigate to your [Subscription Page](https://harvest-api.com/admin/subscription).
 - Review your plan details to see your concurrency limits.
 
-Exceeding your concurrency limits should usually put your next requests in a queue,
-though request rejection is also possible (in case of too many requests in the queue).
-Ensure that your application manages concurrent requests appropriately
-to stay within your plan's limits.
+Exceeding your concurrency limits should put your next requests in a queue. The queue size is 10 per account.  
+Exceeding the queue size will result in an error response.  
+Ensure that your application manages concurrent requests appropriately to stay within your plan's limits.
+
+## How many requests per minute?
+
+Our average scraping time for companies is 1.2s. For profiles, it's 2.3s.  
+This means on Basic plan, for example:
+
+- 60 / 1.2 \* 6 ~ 300 req/min for companies
+- 60 / 2.3 \* 6 ~ 156 req/min for profiles
 
 ## Next Steps
 
