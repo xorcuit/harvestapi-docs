@@ -1,17 +1,17 @@
 ---
-title: 'Get Company'
-openapi: 'GET /linkedin/company'
+title: 'Get Group'
+openapi: 'GET /linkedin/group'
 ---
 
 <CodeGroup>
 
 ```javascript JavaScript
 const params = new URLSearchParams({
-  url: 'https://www.linkedin.com/company/google/', // by URL
-  // universalName: 'google', // by universalName alternatively
+  url: 'https://www.linkedin.com/groups/1898033/', // by URL
+  groupId: '1898033', // by group ID alternatively
 });
 
-fetch(`https://api.harvest-api.com/linkedin/company?${params.toString()}`, {
+fetch(`https://api.harvest-api.com/linkedin/group?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -20,14 +20,14 @@ fetch(`https://api.harvest-api.com/linkedin/company?${params.toString()}`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/company?universalName=google \
+  --url https://api.harvest-api.com/linkedin/group?groupId=1898033 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/company?universalName=google"
+url = "https://api.harvest-api.com/linkedin/group?groupId=1898033"
 
 headers = {"X-API-Key": "<api-key>"}
 

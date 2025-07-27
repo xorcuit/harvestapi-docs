@@ -800,6 +800,14 @@
             }
           },
           {
+            "name": "group",
+            "in": "query",
+            "description": "Group LinkedIn URL or Group ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "postedLimit",
             "in": "query",
             "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'",
@@ -1209,6 +1217,177 @@
           },
           "400": {
             "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/linkedin/group": {
+      "get": {
+        "summary": "Get the LinkedIn group",
+        "description": "Get the LinkedIn group. Required at least one of the query parameters",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "URL of the LinkedIn group (optional)",
+            "schema": {
+              "type": "string",
+              "format": "url"
+            }
+          },
+          {
+            "name": "groupId",
+            "in": "query",
+            "description": "ID of the LinkedIn group (optional)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group profile response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "$ref": "#/components/schemas/Group"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/group-search": {
+      "get": {
+        "summary": "Search LinkedIn Groups",
+        "description": "Retrieve a list of LinkedIn Groups matching the specified search criteria.",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Keywords to search for.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Required for pages > 1. Use this token from the previous page response. Otherwise the page will always be 1 (on LinkedIn side).",
+            "schema": {
+              "type": "string",
+              "format": "nullable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of groups matching the search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/GroupShort"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the response."
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Error message, if any."
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2648,6 +2827,245 @@
           "contributed",
           "edited"
         ]
+      },
+      "Group": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the LinkedIn group."
+          },
+          "linkedinUrl": {
+            "type": "string",
+            "format": "url",
+            "description": "URL of the LinkedIn group."
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Name of the LinkedIn group."
+          },
+          "memberCount": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true,
+            "description": "Number of members in the group."
+          },
+          "logo": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "url",
+                "description": "URL of the group's logo."
+              },
+              "width": {
+                "type": "integer",
+                "description": "Width of the logo image."
+              },
+              "height": {
+                "type": "integer",
+                "description": "Height of the logo image."
+              },
+              "expiresAt": {
+                "type": "integer",
+                "format": "int64",
+                "description": "Timestamp when the logo URL expires."
+              }
+            },
+            "description": "Details about the group's logo."
+          },
+          "heroImage": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "url",
+                "description": "URL of the group's hero image."
+              },
+              "width": {
+                "type": "integer",
+                "description": "Width of the hero image."
+              },
+              "height": {
+                "type": "integer",
+                "description": "Height of the hero image."
+              },
+              "expiresAt": {
+                "type": "integer",
+                "format": "int64",
+                "description": "Timestamp when the hero image URL expires."
+              }
+            },
+            "description": "Details about the group's hero image."
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "Description of the LinkedIn group."
+          },
+          "rules": {
+            "type": "string",
+            "nullable": true,
+            "description": "Rules of the LinkedIn group."
+          },
+          "createdAt": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Creation date of the group in string format."
+              },
+              "timestamp": {
+                "type": "integer",
+                "format": "int64",
+                "description": "Creation date of the group as a Unix timestamp."
+              }
+            },
+            "description": "Creation timestamp and date of the group."
+          },
+          "groupPlusStatusActive": {
+            "type": "boolean",
+            "description": "Indicates if Group Plus status is active."
+          },
+          "postApprovalEnabled": {
+            "type": "boolean",
+            "description": "Indicates if post approval is enabled for the group."
+          },
+          "invitationLevel": {
+            "type": "string",
+            "nullable": true,
+            "description": "Level of invitation required for the group (e.g., 'Anyone', 'ByInvitation')."
+          },
+          "welcomeNote": {
+            "type": "string",
+            "nullable": true,
+            "description": "Welcome note for new members."
+          },
+          "automatedWelcomeNoteEnabled": {
+            "type": "boolean",
+            "description": "Indicates if automated welcome note is enabled."
+          },
+          "publicVisibility": {
+            "type": "boolean",
+            "description": "Indicates if the group is publicly visible."
+          },
+          "admins": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "description": "Total count of administrators."
+              },
+              "text": {
+                "type": "string",
+                "nullable": true,
+                "description": "Text representation of administrators (e.g., \"John Doe and 2 others\")."
+              },
+              "profiles": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the admin profile."
+                    },
+                    "linkedinUrl": {
+                      "type": "string",
+                      "format": "url",
+                      "description": "URL of the admin's LinkedIn profile."
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "description": "First name of the admin."
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "description": "Last name of the admin."
+                    },
+                    "headline": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Headline of the admin's LinkedIn profile."
+                    },
+                    "picture": {
+                      "type": "string",
+                      "format": "url",
+                      "nullable": true,
+                      "description": "URL of the admin's profile picture."
+                    }
+                  },
+                  "required": ["id", "linkedinUrl", "firstName", "lastName"]
+                },
+                "description": "List of admin profiles."
+              }
+            },
+            "required": ["totalCount", "profiles"],
+            "description": "Information about the group administrators."
+          }
+        }
+      },
+      "GroupShort": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the LinkedIn group."
+          },
+          "linkedinUrl": {
+            "type": "string",
+            "format": "url",
+            "nullable": true,
+            "description": "URL of the LinkedIn group."
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Name of the LinkedIn group."
+          },
+          "members": {
+            "type": "string",
+            "nullable": true,
+            "description": "Text representation of the member count (e.g., '10,000+ members')."
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true,
+            "description": "Short summary or description of the group."
+          },
+          "picture": {
+            "type": "string",
+            "format": "url",
+            "nullable": true,
+            "description": "URL of the group's profile picture."
+          },
+          "primaryActions": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "Label for the action (e.g., 'Join', 'View')."
+                },
+                "value": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "Value associated with the action (e.g., a URL or action ID)."
+                }
+              }
+            },
+            "description": "List of primary actions related to the group."
+          }
+        },
+        "required": ["id"]
       },
       "Error": {
         "required": ["error", "message"],

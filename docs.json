@@ -46,8 +46,13 @@
               "linkedin-api-reference/post/company-posts",
               "linkedin-api-reference/post/user-posts",
               "linkedin-api-reference/post/post-comments",
-              "linkedin-api-reference/post/post-reactions"
+              "linkedin-api-reference/post/post-reactions",
+              "linkedin-api-reference/post/group-posts"
             ]
+          },
+          {
+            "group": "LinkedIn Group",
+            "pages": ["linkedin-api-reference/group/get", "linkedin-api-reference/group/search"]
           },
           {
             "group": "LinkedIn GeoID",
