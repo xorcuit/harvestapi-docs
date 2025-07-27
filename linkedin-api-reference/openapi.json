@@ -131,19 +131,44 @@
             }
           },
           {
-            "name": "companyId",
+            "name": "currentCompany",
             "in": "query",
             "required": false,
-            "description": "Filter by company ID. One value or multiple comma-separated",
+            "description": "Filter by company ID or Company URL. One value or multiple comma-separated",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "schoolId",
+            "name": "pastCompany",
             "in": "query",
             "required": false,
-            "description": "Filter by school ID. One value or multiple comma-separated",
+            "description": "Filter by past company ID or Company URL. One value or multiple comma-separated",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "school",
+            "in": "query",
+            "required": false,
+            "description": "Filter by school ID or School URL. One value or multiple comma-separated",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "firstName",
+            "in": "query",
+            "description": "Filter by first name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastName",
+            "in": "query",
+            "description": "Filter by last name",
             "schema": {
               "type": "string"
             }
@@ -160,6 +185,14 @@
             "name": "geoId",
             "in": "query",
             "description": "Filter by location as LinkedIn Geo ID. Overrides the location query param. Use the /linkedin/geo-id-search endpoint to find the Geo ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "industryId",
+            "in": "query",
+            "description": "Filter by industry ID. One value or multiple comma-separated",
             "schema": {
               "type": "string"
             }
