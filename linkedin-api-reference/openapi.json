@@ -1316,15 +1316,6 @@
               "type": "integer",
               "default": 1
             }
-          },
-          {
-            "name": "paginationToken",
-            "in": "query",
-            "description": "Required for pages > 1. Use this token from the previous page response. Otherwise the page will always be 1 (on LinkedIn side).",
-            "schema": {
-              "type": "string",
-              "format": "nullable"
-            }
           }
         ],
         "responses": {
