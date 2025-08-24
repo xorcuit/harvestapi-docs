@@ -68,7 +68,7 @@
           {
             "name": "skipSmtp",
             "in": "query",
-            "description": "Include this parameter to skip SMTP email verification when finding emails. By default SMTP verification is performed. It will output all possible generated emails without checking if they are valid. This version charges less credits",
+            "description": "Include this parameter tother with `findEmail` to skip SMTP email verification when finding emails. It will output all possible generated emails without checking deliverability via SMTP. It will do only minimal validations, as checking domains for MX records. This version charges less credits when using with `findEmail`.",
             "schema": {
               "type": "string"
             }
