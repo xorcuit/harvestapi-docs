@@ -60,7 +60,7 @@
           {
             "name": "findEmail",
             "in": "query",
-            "description": "Include this parameter to find the email of the profile. This version charges more credits",
+            "description": "Include this parameter to find the email of the profile. It will perform SMTP verifications to ensure deliverability. It will also output emails for catch-all domains and mark them as `risky` (deliverability is unknown). This version charges more credits.",
             "schema": {
               "type": "string"
             }
