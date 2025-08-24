@@ -64,6 +64,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "skipSmtp",
+            "in": "query",
+            "description": "Include this parameter to skip SMTP email verification when finding emails. By default SMTP verification is performed. It will output all possible generated emails without checking if they are valid. This version charges less credits",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
