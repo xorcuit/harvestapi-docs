@@ -803,7 +803,7 @@
           {
             "name": "profile",
             "in": "query",
-            "description": "Filter posts by author's profile URL (comma-separated). Note: LinkedIn returns less results when using post search. To extract all posts by a profile, use the /linkedin/profile-posts endpoint",
+            "description": "Filter posts by author's profile URL (comma-separated). Note: LinkedIn returns fewer results per profile when using post search. To extract all posts by a profile, use the /linkedin/profile-posts endpoint",
             "schema": {
               "type": "string"
             }
@@ -811,7 +811,7 @@
           {
             "name": "profileId",
             "in": "query",
-            "description": "Filter posts by author's profile ID or IDs (comma-separated). It's faster to search by ID",
+            "description": "Filter posts by author's profile ID or IDs (comma-separated). It's faster to search by ID. Note: LinkedIn returns fewer results per profile when using post search. To extract all posts by a profile, use the /linkedin/profile-posts endpoint",
             "schema": {
               "type": "string"
             }
@@ -819,7 +819,7 @@
           {
             "name": "company",
             "in": "query",
-            "description": "Filter posts by this company URL or URLs (comma-separated). Note: LinkedIn returns less results when using post search. To extract all posts by a company, use the /linkedin/company-posts endpoint",
+            "description": "Filter posts by this company URL or URLs (comma-separated). Note: LinkedIn returns fewer results per company when using post search. To extract all posts by a company, use the /linkedin/company-posts endpoint",
             "schema": {
               "type": "string"
             }
@@ -827,7 +827,7 @@
           {
             "name": "companyId",
             "in": "query",
-            "description": "Filter posts by company ID or IDs (comma-separated). It's faster to search by ID",
+            "description": "Filter posts by company ID or IDs (comma-separated). It's faster to search by ID. Note: LinkedIn returns fewer results per company when using post search. To extract all posts by a company, use the /linkedin/company-posts endpoint",
             "schema": {
               "type": "string"
             }
