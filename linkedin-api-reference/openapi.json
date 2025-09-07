@@ -803,7 +803,7 @@
           {
             "name": "profile",
             "in": "query",
-            "description": "Filter posts by author's profile URL (comma-separated)",
+            "description": "Filter posts by author's profile URL (comma-separated). Note: LinkedIn returns less results when using post search. To extract all posts by a profile, use the /linkedin/profile-posts endpoint",
             "schema": {
               "type": "string"
             }
@@ -819,7 +819,7 @@
           {
             "name": "company",
             "in": "query",
-            "description": "Filter posts by this company URL or URLs (comma-separated)",
+            "description": "Filter posts by this company URL or URLs (comma-separated). Note: LinkedIn returns less results when using post search. To extract all posts by a company, use the /linkedin/company-posts endpoint",
             "schema": {
               "type": "string"
             }
@@ -1258,6 +1258,248 @@
                     },
                     "error": {
                       "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/profile-posts": {
+      "get": {
+        "summary": "Get LinkedIn profile posts",
+        "description": "Get LinkedIn profile posts by profile URL, ID, or public identifier.",
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "query",
+            "description": "Filter posts by author's profile URL",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "query",
+            "description": "Filter posts by author's profile ID. It's faster to search by ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profilePublicIdentifier",
+            "in": "query",
+            "description": "Filter posts by author's profile public identifier (last part in the URL).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postedLimit",
+            "in": "query",
+            "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'. \nSince LinkedIn doesn't offer a way to filter by date, the filtering will be done on our side, due to that the pagination might have incorrect values, because pagination is returned by LinkedIn without applying the postedLimit filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Required if it was returned by the previous page. Otherwise the page will always be 1 (on LinkedIn side). Doesn't apply for all queries, usually profile posts return this token",
+            "schema": {
+              "type": "string",
+              "format": "nullable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostShort"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string"
+                        },
+                        "profileId": {
+                          "type": "string"
+                        },
+                        "companyId": {
+                          "type": "string"
+                        },
+                        "postedLimit": {
+                          "type": "string"
+                        },
+                        "sortBy": {
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/company-posts": {
+      "get": {
+        "summary": "Get LinkedIn company posts",
+        "description": "Get LinkedIn company posts by company URL, ID, or universal name.",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "description": "Filter posts by this company URL",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyId",
+            "in": "query",
+            "description": "Filter posts by company ID. It's faster to search by ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyUniversalName",
+            "in": "query",
+            "description": "Filter posts by company universal name (last part in the URL)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postedLimit",
+            "in": "query",
+            "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'. \nSince LinkedIn doesn't offer a way to filter by date, the filtering will be done on our side, due to that the pagination might have incorrect values, because pagination is returned by LinkedIn without applying the postedLimit filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Required if it was returned by the previous page. Otherwise the page will always be 1 (on LinkedIn side). Doesn't apply for all queries, usually profile posts return this token",
+            "schema": {
+              "type": "string",
+              "format": "nullable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostShort"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string"
+                        },
+                        "profileId": {
+                          "type": "string"
+                        },
+                        "companyId": {
+                          "type": "string"
+                        },
+                        "postedLimit": {
+                          "type": "string"
+                        },
+                        "sortBy": {
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }

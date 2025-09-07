@@ -27,13 +27,18 @@
             "pages": [
               "linkedin-api-reference/profile/get",
               "linkedin-api-reference/profile/search",
+              "linkedin-api-reference/profile/profile-posts",
               "linkedin-api-reference/profile/profile-comments",
               "linkedin-api-reference/profile/profile-reactions"
             ]
           },
           {
             "group": "LinkedIn Company",
-            "pages": ["linkedin-api-reference/company/get", "linkedin-api-reference/company/search"]
+            "pages": [
+              "linkedin-api-reference/company/get",
+              "linkedin-api-reference/company/search",
+              "linkedin-api-reference/company/company-posts"
+            ]
           },
           {
             "group": "LinkedIn Job",
