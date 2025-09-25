@@ -1,0 +1,48 @@
+---
+title: 'Email finder feature'
+description: ''
+---
+
+Our LinkedIn profile scraper offers a powerful feature for lead generation, recruitment, and networking: the ability to find and validate email addresses associated with a LinkedIn profile.
+
+## How It Works
+
+While **LinkedIn does not publicly provide email addresses or phone numbers** on profiles, our tool uses a sophisticated, multi-step process to find a person's contact information.
+
+Our process is designed to be both effective and accurate, focusing primarily on finding professional, work-related emails.
+
+1.  **Data Extraction**: When you use our profile scraper in "email search" mode, it first extracts a person's name and their current company's domain from their LinkedIn profile.
+
+2.  **Email Generation & Validation**: Using this information, our tool generates possible email address combinations (e.g., `first.last@company.com`, `f.last@company.com`). We then perform comprehensive validation checks on these generated addresses, including **SMTP (Simple Mail Transfer Protocol) checks**, to verify that they are deliverable.
+
+3.  **Accuracy and Personalization**: For cases where multiple deliverable options are found, our tool performs a supplementary Google search to provide the most accurate result. While the majority of the emails we find are work emails, if a person has included a personal email in their public profile description, we'll provide that instead, as long as it's also deliverable.
+
+4.  **Adaptive cost**: If a LinkedIn profile lacks sufficient information to perform an email search, we will not charge you for the attempt. Profile scraping costs still apply.
+
+Note: In the case of [catch-all company domains](https://hunter.io/blog/ultimate-guide-accept-all-catch-all/), these emails will be marked as **'risky'** due to the unknown deliverability of specific email addresses within that domain.
+
+**Important Note**: The scraper cannot extract emails or phone numbers directly from a LinkedIn profile as this information is not publicly available on the platform. The email search is performed independently and is not guaranteed to find an email for every profile.
+
+## Trying It Out
+
+Try it out in our [API Explorer](https://docs.harvest-api.com/linkedin-api-reference/profile/get?playground=open#parameter-find-email)
+You will need to provide:
+
+- API key obtained from the admin, fill in the `X-API-Key` field.
+- Profile URL, fill in the `url` field.
+- Fill `true` in the `findEmail` field.
+
+## API Usage
+
+```js
+const params = new URLSearchParams({
+  url: 'https://www.linkedin.com/in/williamhgates',
+  findEmail: 'true',
+});
+
+fetch(`https://api.harvest-api.com/linkedin/profile?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```

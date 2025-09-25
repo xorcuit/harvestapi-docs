@@ -15,7 +15,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["guides/quickstart", "guides/concurrency"]
+            "pages": ["guides/quickstart", "guides/concurrency", "guides/email-finder"]
           }
         ]
       },
