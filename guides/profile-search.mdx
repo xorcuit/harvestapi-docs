@@ -1,0 +1,30 @@
+## Basic profile search
+
+To scrape the basic profile search from the https://www.linkedin.com/search/results/people/ web page, you can use our
+[Profile Search](/linkedin-api-reference/profile/search) endpoint. This search can usually find profiles when searching by name.  
+When searching by other queries (for example, by job title), this is how the [search page looks like](/images/screenshot_2025-09-29_033012.png)
+to our scrapers. Most of the search results are anonymized and displayed as “LinkedIn Member” without a profile link. We cannot scrape these profiles.
+
+In comparison, your personal LinkedIn account will find more exposed profiles due to your number of connections.  
+Our basic profile search scraper won't be able to extract the same number of search results.
+
+To work this around, [you can pass you own LinkedIn account to the scraper](/guides/custom-accounts).
+
+If you use your personal account without a premium subscription, you will hit [LinkedIn's monthly quota
+for searches](https://www.linkedin.com/help/linkedin/answer/a524372/monthly-people-search-usage) pretty quickly.  
+LinkedIn's business model depends on users paying for searches (and not getting away with search results cheaply).
+So either way, they won't simply allow you to extract search results.
+Even LinkedIn's Business Premium subscription still limits your search results to 3rd-degree connections only
+because this subscription is not top-tier, and they expect you to pay more. While you will be able to extract more profiles,
+you will miss many profiles due to LinkedIn hiding them behind the "LinkedIn Member" label.
+
+## Premium profile search
+
+We have a solution that can scrape all profiles from a search without missing profiles due to the `"LinkedIn Member"` issue.
+[Our premium search scraper is available currently on Apify](https://apify.com/harvestapi/linkedin-profile-search).  
+The API for this search is still under development and not publicly available yet. Please contact us at contact@harvest-api.com
+or on [Discord](https://discord.gg/TGA9k9u2gE) to get early access to the premium profile search.
+The pricing will be $0.1 per request due to the high complexity and LinkedIn's extreme measures.  
+This scraper currently won't be able to handle very large values (more than 50,000 profiles at a time);
+[please check this information](https://apify.com/harvestapi/linkedin-profile-search#large-scale-scraping-and-rate-limits)
+if you plan to use it at scale

@@ -15,7 +15,13 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["guides/quickstart", "guides/concurrency", "guides/email-finder"]
+            "pages": [
+              "guides/quickstart",
+              "guides/concurrency",
+              "guides/email-finder",
+              "guides/profile-search",
+              "guides/custom-accounts"
+            ]
           }
         ]
       },

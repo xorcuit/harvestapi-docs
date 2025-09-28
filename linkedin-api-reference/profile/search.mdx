@@ -5,15 +5,13 @@ openapi: 'GET /linkedin/profile-search'
 
 import GeoIdSnippet from '/snippets/geo-id.mdx';
 
-This search can usually find profiles when searching by name.  
-When searching by other queries (for example by job title) this is how [search page looks like](https://discord.com/channels/1340961342219091991/1343651515591561321/1392607202778550434)
-(search results are anonymized and displayed as "LinkedIn Member" without a profile link).
+### This is basic profile search scraper endpoint, [please check this information before using it](/guides/profile-search).
 
-In comparison your personal LinkedIn account will find much more exposed profiles, due to your number of connections.
-Our scraper won't be able to extract the same number of search results.
+- Please note that this is not the same API as used in [the Apify Actor](https://apify.com/harvestapi/linkedin-profile-search).
 
-As an alternative, you can pass you own account to the scraper or use [our premium search available currently on Apify](https://apify.com/harvestapi/linkedin-profile-search).  
-The API for this search is still under development and not publicly available yet. Please contact us at contact@harvest-api.com or on [Discord](https://discord.gg/TGA9k9u2gE) to get early access to the premium profile search.
+## Examples
+
+- Search by name (fuzzy) and location:
 
 <CodeGroup>
 
@@ -51,6 +49,19 @@ print(response.text)
 
 </CodeGroup>
 
-<GeoIdSnippet />
+- Search by name strict:
 
-- Please note that this [is not the same API as used on Apify](https://discord.com/channels/1340961342219091991/1343651395890581504/1394337902955069481).
+```javascript JavaScript
+const params = new URLSearchParams({
+  search: 'Mark Peterson',
+  firstName: 'Mark',
+  lastName: 'Peterson',
+});
+fetch(`https://api.harvest-api.com/linkedin/profile-search?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+<GeoIdSnippet />

@@ -4,4 +4,43 @@ description: ''
 ---
 
 For some endpoints, you might want to use your personal LinkedIn account to get better results.
-For example, connections are required for LinedIn profile search.
+For example, to get better results from the [Profile Search](/linkedin-api-reference/profile/search) endpoint.
+
+HarvestAPI can use user-supplier LinkedIn accounts. All API endpoints support these query parameters:
+
+- `cookie` : your LinkedIn cookie base64 encoded. You can export your cookie via the browser extension [Cookie-Editor](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm/).
+  After installing it, navigate to Sales Navigator page -> open extension popup -> click "Export" -> JSON.
+  Use any base64 encoder ([for example](https://www.base64encode.org/)) to encode the JSON and pass it as the `cookie` parameter.
+- `proxy` (optionally): We recommend you to find a clean residential/mobile proxy.
+  Proxy location should ideally match your login location. When it's not provided, the scraper will use our proxy pool.
+- `userAgent` (optionally): We also recommend to provide your User Agent, otherwise LinkedIn may log you out
+  after scraping a few pages. If you keep getting logged out, copy your user agent from the same browser where
+  you exported your cookie, [for example via a tool](https://www.whatismybrowser.com/detect/what-is-my-user-agent/).
+
+### Side notes on using custom accounts
+
+- Ideally proxy external IP address shouldn't change. Use static proxies, or proxies with long sticky sessions.
+- Don't forget to check IP quality of your proxy, for example `ipqualityscore.com` Proxy Detection Test
+  should ideally show all green checks, [for example](https://www.ipqualityscore.com/free-ip-lookup-proxy-vpn-test/lookup/172.56.84.82)
+
+## Example
+
+```js
+const params = new URLSearchParams({
+  search: 'Director',
+  location: 'US',
+  cookie: btoa('[{"domain":".linkedin.com","expirationDate":...'), // `btoa` helper to base64 encode the cookie
+  proxy: 'http://user:password@example.com:8080',
+  userAgent:
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+});
+fetch(`https://api.harvest-api.com/linkedin/profile-search?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+## Next Steps
+
+Check out the [API Reference](/linkedin-api-reference/) for detailed information on each API endpoint.

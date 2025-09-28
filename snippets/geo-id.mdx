@@ -2,11 +2,12 @@
 
 For most of the cases, when specifying full location name, the search by the `location` parameter works fine.  
 However sometimes search by location may not give you what you expect, as LinkedIn have some other suggested location for your text query.
-For example, `NY` returns `New Zealand` as first match instead of `New York`; `UK` returns `Ukraine` instead of `United Kingdom`.
-It is based on LinkedIn autocomplete feature, you can try it in UI: https://www.linkedin.com/search/results/people/?geoUrn=%5B%22103644278%22%5D
+For example, `NY` returns `New Zealand` instead of `New York`; `UK` returns `Ukraine` instead of `United Kingdom`.
+The location search is based on LinkedIn autocomplete feature, you can try it [on the website](https://www.linkedin.com/search/results/people/?geoUrn=%5B%22103644278%22%5D) first.
+The scraper will use the first suggestion from the autocomplete popup when you type your location.
 
-To make sure the location is correct, you can look up LinkedIn GeoID for a text query.
-GeoID search is free, it will not count against your quota.
+The same autocomplete is available via our API. You can look up a location and get LinkedIn GeoID to use for the API endpoint.
+The GeoID search is free, it will not count against your quota.
 
 <CodeGroup>
 
