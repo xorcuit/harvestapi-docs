@@ -5,10 +5,9 @@ description: 'How to use LinkedIn profile search scraper and its limitations'
 
 ## Basic profile search scraper
 
-We refer to Basic profile search scraper as the search located at https://www.linkedin.com/search/results/people/.
-We have a scraper for that, it accepts search input parameters like name, location, current company, etc., and
+We refer to the Basic profile search as the search located at https://www.linkedin.com/search/results/people/.
+We have the [Profile Search API endpoint](/linkedin-api-reference/profile/search) to scrape this page - it accepts search input parameters like name, location, current company, etc., and
 page number for pagination. The scraper returns a list of search items (_not profiles, see below why_) matching the search criteria.
-Refer to the [Profile Search API endpoint documentation](/linkedin-api-reference/profile/search) to use it.
 
 This search can usually find a limited number profiles when searching by name.  
 When searching by other queries (for example, by job title), this is how the [search page looks like](/images/screenshot_2025-09-29_033012.png)
