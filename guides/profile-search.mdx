@@ -5,12 +5,18 @@ description: 'How to use LinkedIn profile search scraper and its limitations'
 
 ## Basic profile search scraper
 
-To scrape the basic profile search from the https://www.linkedin.com/search/results/people/ web page, you can use our
-[Profile Search](/linkedin-api-reference/profile/search) endpoint. This search can usually find profiles when searching by name.  
+We refer to Basic profile search scraper as the search located at https://www.linkedin.com/search/results/people/.
+We have a scraper for that, it accepts search input parameters like name, location, current company, etc., and
+page number for pagination. The scraper returns a list of search items (_not profiles, see below why_) matching the search criteria.
+Refer to the [Profile Search API endpoint documentation](/linkedin-api-reference/profile/search) to use it.
+
+This search can usually find a limited number profiles when searching by name.  
 When searching by other queries (for example, by job title), this is how the [search page looks like](/images/screenshot_2025-09-29_033012.png)
 to our scrapers. Most of the search results are anonymized and displayed as “LinkedIn Member” without a profile link. We cannot scrape these profiles.
+The scraper will return these search items, though generally they are not useful.
 
-In comparison, your personal LinkedIn account will find more exposed profiles due to your number of connections.  
+If you compare it to browsing [the search](https://www.linkedin.com/search/results/people/) with your personal LinkedIn account,
+you will find more exposed profile links due to your number of LinkedIn connections.
 Our basic profile search scraper won't be able to extract the same number of search results.
 
 To work this around, [you can pass you own LinkedIn account to the scraper](/guides/custom-accounts).
@@ -18,8 +24,8 @@ To work this around, [you can pass you own LinkedIn account to the scraper](/gui
 If you use your personal account without a premium subscription, you will hit [LinkedIn's monthly quota
 for searches](https://www.linkedin.com/help/linkedin/answer/a524372/monthly-people-search-usage) pretty quickly.  
 LinkedIn's business model depends on users paying for searches (and not getting away with search results cheaply).
-So either way, they won't simply allow you to extract search results.
-Even LinkedIn's Business Premium subscription still limits your search results to 3rd-degree connections only
+So either way, they won't simply allow us to extract search results.
+Even LinkedIn's Business Premium subscription still limits your search results to 3rd-degree connections
 because this subscription is not top-tier, and they expect you to pay more. While you will be able to extract more profiles,
 you will miss many profiles due to LinkedIn hiding them behind the "LinkedIn Member" label.
 
