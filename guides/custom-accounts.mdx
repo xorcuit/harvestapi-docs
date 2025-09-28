@@ -29,7 +29,8 @@ HarvestAPI can use user-supplier LinkedIn accounts. All API endpoints support th
 const params = new URLSearchParams({
   search: 'Director',
   location: 'US',
-  cookie: btoa('[{"domain":".linkedin.com","expirationDate":...'), // `btoa` helper to base64 encode the cookie
+  cookie: btoa(JSON.stringify([{ domain: '.linkedin.com', expirationDate: 'etc...' }])), // `btoa` helper to base64 encode the cookie
+  // cookie: btoa('_guid=e67a3e9e-1234-1234-1234-12345678; lang=v=2&lang=en-us; liap=true; ... ') // copying the cookie from the devtool will also work
   proxy: 'http://user:password@example.com:8080',
   userAgent:
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
