@@ -20,11 +20,11 @@ fetch(`https://api.harvest-api.com/linkedin/geo-id-search?search=New York`, {
   .then((response) => response.json())
   .then((data) => {
     console.log('All matches:', data.elements);
-    console.log('Closest match GeoID:', data.id);
+    console.log('Closest match GeoID:', data.entityId);
 
     // Search for profiles in New York
     const params = new URLSearchParams({
-      geoId: data.id,
+      geoId: data.entityId,
       apiKey,
     });
     fetch(`https://api.harvest-api.com/linkedin/profile-search?${params.toString()}`)
