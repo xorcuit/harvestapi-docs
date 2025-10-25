@@ -214,6 +214,22 @@
             }
           },
           {
+            "name": "keywordsCompany",
+            "in": "query",
+            "description": "Filter by keywords in company name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keywordsSchool",
+            "in": "query",
+            "description": "Filter by keywords in school name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "description": "Page number, use for pagination",
