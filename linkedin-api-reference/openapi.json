@@ -652,6 +652,46 @@
             }
           },
           {
+            "name": "experienceLevel",
+            "in": "query",
+            "description": "Filter by experience level. One or multiple values comma-separated. Supported values: 'internship', 'entry', 'associate', 'mid-senior', 'director', 'executive'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "industryId",
+            "in": "query",
+            "description": "Filter by industry ID. One value or multiple comma-separated industry IDs. Full list of IDs: https://github.com/HarvestAPI/linkedin-industry-codes-v2/blob/main/linkedin_industry_code_v2_all_eng.csv",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "functionId",
+            "in": "query",
+            "description": "Filter by job function ID. One value or multiple comma-separated function IDs. Full list of IDs: https://github.com/HarvestAPI/apify-linkedin-profile-search/blob/main/.actor/input_schema.json#L142",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "under10Applicants",
+            "in": "query",
+            "description": "Include this parameter to filter jobs with under 10 applicants",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "easyApply",
+            "in": "query",
+            "description": "Set this parameter to 'true' filter jobs with Easy Apply option or 'false' to exclude. Values can be 'true' or 'false'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "description": "Page number for pagination",
