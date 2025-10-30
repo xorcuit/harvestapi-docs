@@ -50,9 +50,9 @@
             }
           },
           {
-            "name": "short",
+            "name": "main",
             "in": "query",
-            "description": "Include this parameter to return a short version of the profile (includes name, headline, followers and some other info). This version charges less credits",
+            "description": "Set this parameter to 'true' to return only main version of the profile that you can see on LinkedIn without expanding profile sections - up to 5 experiences, 2 educations, 2 skills, etc. This version charges less credits",
             "schema": {
               "type": "string"
             }
@@ -68,7 +68,7 @@
           {
             "name": "skipSmtp",
             "in": "query",
-            "description": "Include this parameter tother with `findEmail` to skip SMTP email verification when finding emails. It will output all possible generated emails without checking deliverability via SMTP. It will do only minimal validations, as checking domains for MX records. This version charges less credits when using with `findEmail`.",
+            "description": "Include this parameter together with `findEmail` to skip SMTP email verification when finding emails. It will output all possible generated emails without checking deliverability via SMTP. It will do only minimal validations, as checking domains for MX records. This version charges less credits when using with `findEmail`.",
             "schema": {
               "type": "string"
             }
