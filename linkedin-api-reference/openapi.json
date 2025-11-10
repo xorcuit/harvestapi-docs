@@ -2812,12 +2812,7 @@
             "format": "nullable"
           },
           "repost": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PostShort"
-              }
-            ]
+            "type": "object"
           },
           "repostedBy": {
             "type": "object",

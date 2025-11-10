@@ -70,6 +70,16 @@
             "pages": ["linkedin-api-reference/geo-id/search"]
           }
         ]
+      },
+
+      {
+        "tab": "Platform API Reference",
+        "groups": [
+          {
+            "group": "My account",
+            "pages": ["platform-api-reference/account/my-api-user"]
+          }
+        ]
       }
     ],
     "global": {
