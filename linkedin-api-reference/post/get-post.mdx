@@ -1,0 +1,37 @@
+---
+title: 'Get post'
+openapi: 'GET /linkedin/post'
+---
+
+<CodeGroup>
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  post: 'https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7',
+});
+fetch(`https://api.harvest-api.com/linkedin/post?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+```bash cURL
+curl --request GET \
+  --url https://api.harvest-api.com/linkedin/post?post=https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7 \
+  --header 'X-API-Key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://api.harvest-api.com/linkedin/post?post=https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7"
+
+headers = {"X-API-Key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+</CodeGroup>

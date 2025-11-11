@@ -843,6 +843,65 @@
         }
       }
     },
+
+    "/linkedin/post": {
+      "get": {
+        "summary": "Get LinkedIn post details",
+        "description": "Get LinkedIn post details by post URL.",
+        "parameters": [
+          {
+            "name": "post",
+            "in": "query",
+            "description": "URL of the LinkedIn post (required)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post details response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "$ref": "#/components/schemas/PostShort"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "post": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
     "/linkedin/post-search": {
       "get": {
         "summary": "Search LinkedIn posts",

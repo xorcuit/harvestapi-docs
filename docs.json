@@ -54,6 +54,7 @@
             "group": "LinkedIn Post",
             "pages": [
               "linkedin-api-reference/post/search",
+              "linkedin-api-reference/post/get-post",
               "linkedin-api-reference/post/company-posts",
               "linkedin-api-reference/post/user-posts",
               "linkedin-api-reference/post/post-comments",
