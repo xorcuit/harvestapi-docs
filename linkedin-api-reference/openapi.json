@@ -850,7 +850,7 @@
         "description": "Get LinkedIn post details by post URL.",
         "parameters": [
           {
-            "name": "post",
+            "name": "url",
             "in": "query",
             "description": "URL of the LinkedIn post (required)",
             "schema": {

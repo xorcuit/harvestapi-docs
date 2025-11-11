@@ -7,7 +7,7 @@ openapi: 'GET /linkedin/post'
 
 ```javascript JavaScript
 const params = new URLSearchParams({
-  post: 'https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7',
+  url: 'https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7',
 });
 fetch(`https://api.harvest-api.com/linkedin/post?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
@@ -18,14 +18,14 @@ fetch(`https://api.harvest-api.com/linkedin/post?${params.toString()}`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/post?post=https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7 \
+  --url https://api.harvest-api.com/linkedin/post?url=https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/post?post=https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7"
+url = "https://api.harvest-api.com/linkedin/post?url=https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7"
 
 headers = {"X-API-Key": "<api-key>"}
 
