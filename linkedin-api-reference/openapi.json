@@ -72,6 +72,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "includeAboutProfile",
+            "in": "query",
+            "description": "Include this parameter to scrape the \"About this profile\" popup from LinkedIn profiles.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

@@ -19,6 +19,8 @@ HarvestAPI can use user-supplier LinkedIn accounts. All API endpoints support th
 
 ### Side notes on using custom accounts
 
+- If your account wasn't used actively, and you start scraping hundreds of pages immediately, LinkedIn may restrict your account.
+  Start scraping slowly and increase the activity gradually.
 - Ideally proxy external IP address shouldn't change. Use static proxies, or proxies with long sticky sessions.
 - Don't forget to check IP quality of your proxy, for example `ipqualityscore.com` Proxy Detection Test
   should ideally show all green checks, [for example](https://www.ipqualityscore.com/free-ip-lookup-proxy-vpn-test/lookup/172.56.84.82)
@@ -41,6 +43,10 @@ fetch(`https://api.harvest-api.com/linkedin/profile-search?${params.toString()}`
   .then((response) => response.json())
   .then((data) => console.log(data));
 ```
+
+## Pricing
+
+Using your own LinkedIn account is free, you will be charged only for the API requests.
 
 ## Next Steps
 
