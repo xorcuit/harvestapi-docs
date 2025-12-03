@@ -67,6 +67,10 @@
             "pages": ["linkedin-api-reference/group/get", "linkedin-api-reference/group/search"]
           },
           {
+            "group": "LinkedIn Services",
+            "pages": ["linkedin-api-reference/service/search"]
+          },
+          {
             "group": "LinkedIn GeoID",
             "pages": ["linkedin-api-reference/geo-id/search"]
           }
