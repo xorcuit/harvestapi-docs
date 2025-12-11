@@ -23,15 +23,15 @@ To work this around, [you can pass you own LinkedIn account to the scraper](/gui
 If you use your personal account without a premium subscription, you will hit [LinkedIn's monthly quota
 for searches](https://www.linkedin.com/help/linkedin/answer/a524372/monthly-people-search-usage) pretty quickly.
 
-## Linkedin services search scraper
+## Linkedin service search scraper
 
-LinkedIn has a separate search for to search profiles that offer services. The services search does not hide any
+LinkedIn has a separate search for people who offer services. The service search does not hide any
 profiles behind "LinkedIn Member" anonymization, so it's possible to fully extract 100 pages, 10 profiles per page,
-i.e. 1000 profiles per search query. Which makes it a great alternative to find a good number of profiles when
+i.e. 1000 profiles per search query - which makes it a great alternative to find a good number of profiles when
 searching by job title or skills. The drawback is that it can find fewer profiles.
 
 For example "Web design" in "California": https://www.linkedin.com/search/results/services/?geoUrn=%5B%22102095887%22%5D&keywords=web%20design
-can find about 3,300 results. While the the Basic profile search counts 37,867 profiles for the same query.
+can find about 3,300 results. While the the Basic profile search counts 37,867 profiles total for the same query.
 
 To scrape the services search, please use the [Service Search API endpoint](/linkedin-api-reference/service/search).  
 Or the Apify Actor [LinkedIn Services Search Scraper](https://apify.com/harvestapi/linkedin-profile-search-by-services).
