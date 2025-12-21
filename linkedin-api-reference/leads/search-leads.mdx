@@ -19,7 +19,7 @@ const params = new URLSearchParams({
   location: 'US',
   seniorityLevelIds: '120,210',
   profileLanguages: 'en',
-  excludeSeniorityLevelIds: '220,330,310',
+  excludeSeniorityLevelIds: '220,300,310',
 });
 fetch(`https://api.harvest-api.com/linkedin/lead-search?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
