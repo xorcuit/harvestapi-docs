@@ -1,0 +1,31 @@
+---
+title: 'Search Leads'
+openapi: 'GET /linkedin/lead-search'
+---
+
+- This is the same search as used in [the Profile Search Apify Actor](https://apify.com/harvestapi/linkedin-profile-search)
+  and in the [Company Employees Search](https://apify.com/harvestapi/linkedin-company-employees) - it's possible to replicate
+  features of these actors using this API endpoint.
+
+## Examples
+
+<CodeGroup>
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  page: '1',
+  search: 'Machine Learning Engineer',
+  currentCompany: 'https://www.linkedin.com/company/google',
+  location: 'US',
+  seniorityLevelIds: '120,210',
+  profileLanguages: 'en',
+  excludeSeniorityLevelIds: '220,330,310',
+});
+fetch(`https://api.harvest-api.com/linkedin/lead-search?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+</CodeGroup>

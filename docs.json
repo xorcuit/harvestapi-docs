@@ -73,6 +73,10 @@
           {
             "group": "LinkedIn GeoID",
             "pages": ["linkedin-api-reference/geo-id/search"]
+          },
+          {
+            "group": "LinkedIn Leads",
+            "pages": ["linkedin-api-reference/leads/search-leads"]
           }
         ]
       },

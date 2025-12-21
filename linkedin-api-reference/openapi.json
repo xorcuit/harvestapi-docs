@@ -1908,6 +1908,279 @@
           }
         }
       }
+    },
+    "/linkedin/lead-search": {
+      "get": {
+        "summary": "Search LinkedIn leads",
+        "description": "Search LinkedIn profile leads by filters with advanced inclusion and exclusion criteria",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": true,
+            "description": "Search query. Fuzzy search, supports LinkedIn's search operators",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currentCompanies",
+            "in": "query",
+            "description": "Filter by current company IDs or URLs. Comma-separated (max 50)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pastCompanies",
+            "in": "query",
+            "description": "Filter by past company IDs or URLs. Comma-separated (max 50)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "locations",
+            "in": "query",
+            "description": "Filter by location text. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "geoIds",
+            "in": "query",
+            "description": "Filter by LinkedIn Geo ID. Comma-separated. Overrides location param. Use /linkedin/geo-id-search to find IDs",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "schools",
+            "in": "query",
+            "description": "Filter by school IDs or URLs. Comma-separated (max 50)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currentJobTitles",
+            "in": "query",
+            "description": "Filter by current job titles. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pastJobTitles",
+            "in": "query",
+            "description": "Filter by past job titles. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "firstNames",
+            "in": "query",
+            "description": "Filter by first names. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastNames",
+            "in": "query",
+            "description": "Filter by last names. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "industryIds",
+            "in": "query",
+            "description": "Filter by industry IDs. Comma-separated (max 70). Full list: https://github.com/HarvestAPI/linkedin-industry-codes-v2/blob/main/linkedin_industry_code_v2_all_eng_with_header.csv",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "yearsAtCurrentCompanyIds",
+            "in": "query",
+            "description": "Filter by years at current company IDs. Comma-separated. https://github.com/HarvestAPI/harvestapi-sdk/blob/main/packages/scraper/README.md#yearsatcurrentcompanyids",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "yearsOfExperienceIds",
+            "in": "query",
+            "description": "Filter by years of experience IDs. Comma-separated. https://github.com/HarvestAPI/harvestapi-sdk/blob/main/packages/scraper/README.md#yearsofexperienceids",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "seniorityLevelIds",
+            "in": "query",
+            "description": "Filter by seniority level IDs. Comma-separated. https://github.com/HarvestAPI/harvestapi-sdk/blob/main/packages/scraper/README.md#senioritylevelids",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "functionIds",
+            "in": "query",
+            "description": "Filter by job function IDs. Comma-separated. https://github.com/HarvestAPI/harvestapi-sdk/blob/main/packages/scraper/README.md#functionids",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "recentlyChangedJobs",
+            "in": "query",
+            "description": "Filter leads who recently changed jobs",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "profileLanguages",
+            "in": "query",
+            "description": "Filter by profile languages. Comma-separated. https://github.com/HarvestAPI/harvestapi-sdk/blob/main/packages/scraper/README.md#profilelanguages",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeLocations",
+            "in": "query",
+            "description": "Locations to exclude from search. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeGeoIds",
+            "in": "query",
+            "description": "Geo IDs to exclude from search. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeCurrentCompanies",
+            "in": "query",
+            "description": "Current companies to exclude. Comma-separated (max 50)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludePastCompanies",
+            "in": "query",
+            "description": "Past companies to exclude. Comma-separated (max 50)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeSchools",
+            "in": "query",
+            "description": "Schools to exclude. Comma-separated (max 50)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeCurrentJobTitles",
+            "in": "query",
+            "description": "Current job titles to exclude. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludePastJobTitles",
+            "in": "query",
+            "description": "Past job titles to exclude. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeIndustryIds",
+            "in": "query",
+            "description": "Industry IDs to exclude. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeSeniorityLevelIds",
+            "in": "query",
+            "description": "Seniority level IDs to exclude. Comma-separated (max 20)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeFunctionIds",
+            "in": "query",
+            "description": "Function IDs to exclude. Comma-separated (max 30)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination (clamped at 100)",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lead search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LeadShort"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2339,6 +2612,99 @@
           },
           "hidden": {
             "type": "boolean"
+          }
+        }
+      },
+      "LeadShort": {
+        "required": ["linkedinUrl"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "linkedinUrl": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "openProfile": {
+            "type": "boolean"
+          },
+          "premium": {
+            "type": "boolean"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "linkedinText": {
+                "type": "string"
+              }
+            }
+          },
+          "pictureUrl": {
+            "type": "string"
+          },
+          "currentPositions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "companyName": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "startedOn": {
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "string",
+                      "format": "nullable"
+                    },
+                    "year": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "companyId": {
+                  "type": "string"
+                },
+                "companyLinkedinUrl": {
+                  "type": "string"
+                },
+                "tenureAtPosition": {
+                  "type": "object",
+                  "properties": {
+                    "numYears": {
+                      "type": "string"
+                    },
+                    "numMonths": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "tenureAtCompany": {
+                  "type": "object",
+                  "properties": {
+                    "numYears": {
+                      "type": "string"
+                    },
+                    "numMonths": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
