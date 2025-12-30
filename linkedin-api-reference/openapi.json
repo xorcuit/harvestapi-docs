@@ -1228,6 +1228,71 @@
         }
       }
     },
+    "/linkedin/comment-reactions": {
+      "get": {
+        "summary": "Get reactions of LinkedIn post comment",
+        "description": "Get reactions of LinkedIn post comment by comment URL.",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "URL of the LinkedIn comment (required)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination. Default is 1",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post reactions response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostReaction"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
 
     "/linkedin/profile-comments": {
       "get": {

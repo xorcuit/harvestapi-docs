@@ -1,0 +1,50 @@
+---
+title: 'Comment reactions'
+openapi: 'GET /linkedin/comment-reactions'
+---
+
+Get reactions of a LinkedIn post comment by comment URL.
+
+### Profile URL format note
+
+This endpoint scrapes the Reactions pop-up of a post comment on the LinkedIn website.
+For reactions, LinkedIn website usually returns profile URLs in profile ID format,
+for example: `https://linkedin.com/in/ACoAAA8BYqEBCGLg_vT_ca6mMEqkpp9nVffJ3hc` without public identifiers / slugs - we
+did't find a way to get slugs directly from the Reactions pop-up or decode these IDs.  
+The get the usual profile URL the workaround is to call the [Profile endpoint](/linkedin-api-reference/profile/get)
+for each profile reaction (check main profile version to reduce costs).
+
+## Examples
+
+<CodeGroup>
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  url: 'https://www.linkedin.com/feed/update/urn:li:activity:7408723748973056001?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7408723748973056001%2C7408723949095772161%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287408723949095772161%2Curn%3Ali%3Aactivity%3A7408723748973056001%29',
+});
+fetch(`https://api.harvest-api.com/linkedin/comment-reactions?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+```bash cURL
+curl --request GET \
+  --url https://api.harvest-api.com/linkedin/comment-reactions?url=https://www.linkedin.com/feed/update/urn:li:activity:7408723748973056001?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7408723748973056001%2C7408723949095772161%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287408723949095772161%2Curn%3Ali%3Aactivity%3A7408723748973056001%29 \
+  --header 'X-API-Key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://api.harvest-api.com/linkedin/comment-reactions?url=https://www.linkedin.com/feed/update/urn:li:activity:7408723748973056001?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7408723748973056001%2C7408723949095772161%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287408723949095772161%2Curn%3Ali%3Aactivity%3A7408723748973056001%29"
+
+headers = {"X-API-Key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+</CodeGroup>

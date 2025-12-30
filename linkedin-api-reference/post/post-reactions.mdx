@@ -3,6 +3,17 @@ title: 'Post reactions'
 openapi: 'GET /linkedin/post-reactions'
 ---
 
+### Profile URL format note
+
+This endpoint scrapes the Reactions pop-up of a post on the LinkedIn website.
+For reactions, LinkedIn website usually returns profile URLs in profile ID format,
+for example: `https://linkedin.com/in/ACoAAA8BYqEBCGLg_vT_ca6mMEqkpp9nVffJ3hc` without public identifiers / slugs - we
+did't find a way to get slugs directly from the Reactions pop-up or decode these IDs.  
+The get the usual profile URL the workaround is to call the [Profile endpoint](/linkedin-api-reference/profile/get)
+for each profile reaction (check main profile version to reduce costs).
+
+## Examples
+
 <CodeGroup>
 
 ```javascript JavaScript
@@ -10,7 +21,7 @@ const params = new URLSearchParams({
   post: 'https://www.linkedin.com/posts/microsoft-events_microsoft-build-has-arrived-in-seattle-and-ugcPost-7329991434395160578-GnK7?utm_source=share&utm_medium=member_desktop&rcm=ACoAACzazy4B3ajZsA0WxWr6m4S77iItYbYCLZM',
   // post: 'https://www.linkedin.com/feed/update/urn:li:activity:7320867199693246465/' // Or Activity URL
 });
-fetch(`https://api.harvest-api.com/linkedin/post-reactions/post-reactions?${params.toString()}`, {
+fetch(`https://api.harvest-api.com/linkedin/post-reactions?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
