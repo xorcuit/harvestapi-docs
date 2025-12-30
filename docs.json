@@ -32,6 +32,7 @@
             "group": "LinkedIn Profile",
             "pages": [
               "linkedin-api-reference/profile/get",
+              "linkedin-api-reference/leads/search-leads",
               "linkedin-api-reference/profile/search",
               "linkedin-api-reference/profile/profile-posts",
               "linkedin-api-reference/profile/profile-comments",
@@ -74,10 +75,6 @@
           {
             "group": "LinkedIn GeoID",
             "pages": ["linkedin-api-reference/geo-id/search"]
-          },
-          {
-            "group": "LinkedIn Leads",
-            "pages": ["linkedin-api-reference/leads/search-leads"]
           }
         ]
       },
