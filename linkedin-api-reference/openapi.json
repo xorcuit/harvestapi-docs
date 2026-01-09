@@ -983,7 +983,15 @@
           {
             "name": "postedLimit",
             "in": "query",
-            "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'",
+            "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'. This parameter will be sent to LinkedIn, the filtering will be done on their side",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scrapePostedLimit",
+            "in": "query",
+            "description": "Post-Filter posts by maximum posted date. Supported values: '1h', '24h', 'week','month', '3months', '6months', 'year'. This parameter will be applied after receiving results from LinkedIn, the filtering will be done on our side",
             "schema": {
               "type": "string"
             }
@@ -2236,6 +2244,142 @@
           },
           "400": {
             "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/linkedin/ad-search": {
+      "get": {
+        "summary": "Search LinkedIn Ad Library",
+        "description": "Retrieve a list of LinkedIn Ads matching the specified search criteria.",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Search by keyword",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accountOwner",
+            "in": "query",
+            "description": "Search by company or advertiser name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "description": "One or comma separated list of country codes to filter ads by country. Eg. 'US,GB,FR'. Supports \"ALL\" value to search in all countries.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateOption",
+            "in": "query",
+            "description": "One of the following options to filter ads by date: 'last-30-days', 'current-month', 'current-year', 'last-year', 'custom-date-range'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startdate",
+            "in": "query",
+            "description": "Start date for 'custom-date-range' filter in 'YYYY-MM-DD' format",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "description": "End date for 'custom-date-range' filter in 'YYYY-MM-DD' format",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Pagination token from the previous response for fetching the next page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of ads matching the search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdShort"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the response."
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Error message, if any."
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4002,6 +4146,52 @@
           }
         },
         "required": ["id"]
+      },
+      "AdShort": {
+        "required": ["id", "accountName", "adName", "status"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "advertiser": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "picture": {
+                "type": "string"
+              },
+              "headline": {
+                "type": "string"
+              }
+            }
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "headline": {
+                "type": "string"
+              },
+              "commentary": {
+                "type": "string"
+              },
+              "pageUrl": {
+                "type": "string"
+              },
+              "imageUrl": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "messageAuthor": {
+                "type": "string"
+              }
+            }
+          }
+        }
       },
       "Error": {
         "required": ["error", "message"],

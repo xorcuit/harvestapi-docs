@@ -69,6 +69,10 @@
             "pages": ["linkedin-api-reference/group/get", "linkedin-api-reference/group/search"]
           },
           {
+            "group": "LinkedIn Ads",
+            "pages": ["linkedin-api-reference/ads/ad-search"]
+          },
+          {
             "group": "LinkedIn Services",
             "pages": ["linkedin-api-reference/service/search"]
           },
