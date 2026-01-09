@@ -1512,6 +1512,14 @@
             }
           },
           {
+            "name": "scrapePostedLimit",
+            "in": "query",
+            "description": "Post-Filter posts by maximum posted date. Supported values: '1h', '24h', 'week','month', '3months', '6months', 'year'. This parameter will be applied after receiving results from LinkedIn, the filtering will be done on our side",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "description": "Page number for pagination",
@@ -1628,6 +1636,14 @@
             "name": "postedLimit",
             "in": "query",
             "description": "Filter posts by maximum posted date. Supported values: '24h', 'week', 'month'. \nSince LinkedIn doesn't offer a way to filter by date, the filtering will be done on our side, due to that the pagination might have incorrect values, because pagination is returned by LinkedIn without applying the postedLimit filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scrapePostedLimit",
+            "in": "query",
+            "description": "Post-Filter posts by maximum posted date. Supported values: '1h', '24h', 'week','month', '3months', '6months', 'year'. This parameter will be applied after receiving results from LinkedIn, the filtering will be done on our side",
             "schema": {
               "type": "string"
             }
