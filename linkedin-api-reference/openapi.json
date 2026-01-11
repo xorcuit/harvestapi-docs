@@ -2338,8 +2338,8 @@
             "in": "query",
             "description": "Pagination token from the previous response for fetching the next page",
             "schema": {
-              "type": "integer",
-              "default": 1
+              "type": "string",
+              "format": "nullable"
             }
           }
         ],
