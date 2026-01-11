@@ -4251,7 +4251,7 @@
                 "content": {
                   "type": "object",
                   "properties": {
-                    "commentary": { "type": "string", "nullable": true },
+                    "description": { "type": "string", "nullable": true },
                     "imageUrl": { "type": "string", "nullable": true },
                     "videoThumbnailUrl": { "type": "string", "nullable": true },
                     "videoSource": { "nullable": true },
@@ -4353,7 +4353,7 @@
             "required": ["pageUrl"],
             "properties": {
               "headline": { "type": "string", "nullable": true },
-              "commentary": { "type": "string", "nullable": true },
+              "description": { "type": "string", "nullable": true },
               "pageUrl": { "type": "string" },
               "imageUrl": { "type": "string", "nullable": true },
               "message": { "type": "string" },
