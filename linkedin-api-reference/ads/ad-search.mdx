@@ -3,6 +3,8 @@ title: 'Search Ad Library'
 openapi: 'GET /linkedin/ad-search'
 ---
 
+Scrape [LinkedIn Ad Library Search](https://www.linkedin.com/ad-library/search) to find ads based on various criteria such as keywords, account owners, countries, and date ranges.
+
 <CodeGroup>
 
 ```javascript JavaScript
@@ -31,7 +33,7 @@ curl --request GET \
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/company?keyword=sales&accountOwner=ai&countries=US,CA,FR&dateOption=custom-date-range&startdate=2025-01-01&enddate=2025-12-31"
+url = "https://api.harvest-api.com/linkedin/ad-library?keyword=sales&accountOwner=ai&countries=US,CA,FR&dateOption=custom-date-range&startdate=2025-01-01&enddate=2025-12-31"
 
 headers = {"X-API-Key": "<api-key>"}
 

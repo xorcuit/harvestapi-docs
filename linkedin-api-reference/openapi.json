@@ -2278,6 +2278,14 @@
         "description": "Retrieve a list of LinkedIn Ads matching the specified search criteria.",
         "parameters": [
           {
+            "name": "searchUrl",
+            "in": "query",
+            "description": "Scrape Ad Library search URL, for example: https://www.linkedin.com/ad-library/search?accountOwner=test&keyword=test&dateOption=custom-date-range&startdate=2025-07-07&enddate=2025-08-21",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "keyword",
             "in": "query",
             "description": "Search by keyword",
@@ -2346,7 +2354,7 @@
                     "elements": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/AdShort"
+                        "$ref": "#/components/schemas/LinkedInAdShort"
                       }
                     },
                     "pagination": {
@@ -2396,6 +2404,62 @@
           },
           "500": {
             "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/ad": {
+      "get": {
+        "summary": "Get LinkedIn Ad by ID",
+        "description": "Retrieve detailed information about a specific LinkedIn Ad using its unique ID.",
+        "parameters": [
+          {
+            "name": "adId",
+            "in": "query",
+            "description": "The unique identifier of the LinkedIn Ad.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "description": "The URL of the LinkedIn Ad.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed information about the specified LinkedIn Ad.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkedInAd"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Ad not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4163,50 +4227,140 @@
         },
         "required": ["id"]
       },
-      "AdShort": {
-        "required": ["id", "accountName", "adName", "status"],
+
+      "LinkedInAd": {
         "type": "object",
+        "required": ["id", "variants", "about", "impressions", "targeting"],
         "properties": {
-          "id": {
-            "type": "string"
+          "id": { "type": "string" },
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["advertiser", "content", "creativeType"],
+              "properties": {
+                "advertiser": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string", "nullable": true },
+                    "linkedinUrl": { "type": "string" },
+                    "imageUrl": { "type": "string", "nullable": true },
+                    "headline": { "type": "string", "nullable": true }
+                  }
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "commentary": { "type": "string", "nullable": true },
+                    "imageUrl": { "type": "string", "nullable": true },
+                    "videoThumbnailUrl": { "type": "string", "nullable": true },
+                    "videoSource": { "nullable": true },
+                    "targetUrl": { "type": "string", "nullable": true },
+                    "headline": { "type": "string", "nullable": true },
+                    "ctaLabel": { "type": "string", "nullable": true },
+                    "slides": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "imageUrl": { "type": "string", "nullable": true },
+                          "targetUrl": { "type": "string", "nullable": true },
+                          "title": { "type": "string", "nullable": true }
+                        }
+                      }
+                    }
+                  }
+                },
+                "creativeType": { "type": "string", "nullable": true }
+              }
+            }
           },
-          "advertiser": {
+          "about": {
             "type": "object",
             "properties": {
-              "name": {
-                "type": "string"
-              },
-              "picture": {
-                "type": "string"
-              },
-              "headline": {
-                "type": "string"
+              "format": { "type": "string", "nullable": true },
+              "advertiserName": { "type": "string", "nullable": true },
+              "advertiserUrl": { "type": "string", "nullable": true },
+              "paidBy": { "type": "string", "nullable": true },
+              "ranFrom": { "type": "string", "nullable": true },
+              "ranTo": { "type": "string", "nullable": true }
+            }
+          },
+          "impressions": {
+            "type": "object",
+            "properties": {
+              "total": { "type": "string", "nullable": true },
+              "byCountry": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string", "nullable": true },
+                    "percentage": { "type": "string", "nullable": true }
+                  }
+                }
               }
+            }
+          },
+          "targeting": {
+            "type": "object",
+            "required": ["segments", "parameters"],
+            "properties": {
+              "segments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["name", "includes", "excludes"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "includes": { "type": "array", "items": { "type": "string" } },
+                    "excludes": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              },
+              "parameters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["name", "targeted", "excluded"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "targeted": { "type": "boolean" },
+                    "excluded": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "LinkedinAdShort": {
+        "type": "object",
+        "required": ["id", "advertiser", "content", "creativeType"],
+        "properties": {
+          "id": { "type": "string" },
+          "advertiser": {
+            "type": "object",
+            "required": ["name", "imageUrl", "headline"],
+            "properties": {
+              "name": { "type": "string" },
+              "imageUrl": { "type": "string" },
+              "headline": { "type": "string" }
             }
           },
           "content": {
             "type": "object",
+            "required": ["pageUrl"],
             "properties": {
-              "headline": {
-                "type": "string"
-              },
-              "commentary": {
-                "type": "string"
-              },
-              "pageUrl": {
-                "type": "string"
-              },
-              "imageUrl": {
-                "type": "string"
-              },
-              "message": {
-                "type": "string"
-              },
-              "messageAuthor": {
-                "type": "string"
-              }
+              "headline": { "type": "string", "nullable": true },
+              "commentary": { "type": "string", "nullable": true },
+              "pageUrl": { "type": "string" },
+              "imageUrl": { "type": "string", "nullable": true },
+              "message": { "type": "string" },
+              "messageAuthor": { "type": "string" }
             }
-          }
+          },
+          "creativeType": { "type": "string" }
         }
       },
       "Error": {

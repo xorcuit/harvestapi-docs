@@ -70,7 +70,7 @@
           },
           {
             "group": "LinkedIn Ads",
-            "pages": ["linkedin-api-reference/ads/ad-search"]
+            "pages": ["linkedin-api-reference/ads/ad-search", "linkedin-api-reference/ads/ad"]
           },
           {
             "group": "LinkedIn Services",

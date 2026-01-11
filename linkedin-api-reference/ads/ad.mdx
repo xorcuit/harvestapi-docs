@@ -1,0 +1,39 @@
+---
+title: 'Get Ad Details'
+openapi: 'GET /linkedin/ad'
+---
+
+<CodeGroup>
+
+```javascript JavaScript
+const params = new URLSearchParams({
+  url: 'https://www.linkedin.com/ad-library/detail/1104386363',
+  // adId: '1104386363', // Alternatively, by Ad ID
+});
+
+fetch(`https://api.harvest-api.com/linkedin/ad?${params.toString()}`, {
+  headers: { 'X-API-Key': '<api-key>' },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+```bash cURL
+curl --request GET \
+  --url https://api.harvest-api.com/linkedin/ad?adId=1104386363 \
+  --header 'X-API-Key: <api-key>'
+```
+
+```python Python
+import requests
+
+url = "https://api.harvest-api.com/linkedin/ad?adId=1104386363"
+
+headers = {"X-API-Key": "<api-key>"}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+</CodeGroup>
