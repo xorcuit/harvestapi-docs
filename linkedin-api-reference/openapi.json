@@ -3594,6 +3594,17 @@
               }
             }
           },
+          "postVideo": {
+            "type": "object",
+            "properties": {
+              "thumbnailUrl": {
+                "type": "string"
+              },
+              "videoUrl": {
+                "type": "string"
+              }
+            }
+          },
           "article": {
             "type": "object",
             "properties": {
