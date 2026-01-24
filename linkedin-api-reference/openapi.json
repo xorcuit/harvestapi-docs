@@ -2141,6 +2141,14 @@
             }
           },
           {
+            "name": "companyHeadcount",
+            "in": "query",
+            "description": "Filter by profile languages. Comma-separated. https://github.com/HarvestAPI/harvestapi-sdk/blob/main/packages/scraper/README.md#companyheadcount",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "excludeLocations",
             "in": "query",
             "description": "Locations to exclude from search. Comma-separated (max 70)",
