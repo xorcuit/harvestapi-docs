@@ -3576,8 +3576,22 @@
               }
             }
           },
-          "postedAgo": {
-            "type": "string"
+          "postedAt": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "integer"
+              },
+              "date": {
+                "type": "string"
+              },
+              "postedAgoShort": {
+                "type": "string"
+              },
+              "postedAgoText": {
+                "type": "string"
+              }
+            }
           },
           "postImages": {
             "type": "array",
