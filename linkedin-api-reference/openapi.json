@@ -2236,6 +2236,14 @@
               "type": "integer",
               "default": 1
             }
+          },
+          {
+            "name": "usePrivatePool",
+            "in": "query",
+            "description": "Set to true to use your private pool of resources (if available)",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
