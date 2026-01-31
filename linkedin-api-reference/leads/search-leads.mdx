@@ -29,3 +29,10 @@ fetch(`https://api.harvest-api.com/linkedin/lead-search?${params.toString()}`, {
 ```
 
 </CodeGroup>
+
+## Session ID
+
+- LinkedIn applies search personalization, so the results may vary based on resources used for scraping.
+- When iterating over multiple pages, different pages might be scraped by different resources, which can lead to inconsistent results.
+
+To mitigate this, you can use the `sessionId` parameter to ensure that all pages are scraped by the same resource.

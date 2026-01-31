@@ -2006,7 +2006,6 @@
           {
             "name": "search",
             "in": "query",
-            "required": true,
             "description": "Search query. Fuzzy search, supports LinkedIn's search operators",
             "schema": {
               "type": "string"
