@@ -30,6 +30,18 @@
           }
         }
       }
+    },
+    "/users/my-private-account-pools": {
+      "get": {
+        "summary": "Get my API private account pools",
+        "description": "Get details about the private account pools associated with the API user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "My API private account pools"
+          }
+        }
+      }
     }
   },
   "components": {
