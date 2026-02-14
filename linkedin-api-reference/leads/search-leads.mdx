@@ -35,4 +35,9 @@ fetch(`https://api.harvest-api.com/linkedin/lead-search?${params.toString()}`, {
 - LinkedIn applies search personalization, so the results may vary based on resources used for scraping.
 - When iterating over multiple pages, different pages might be scraped by different resources, which can lead to inconsistent results.
 
-To mitigate this, you can use the `sessionId` parameter to ensure that all pages are scraped by the same resource.
+To mitigate this, you can use the `sessionId` parameter to request our backend to use the same resource.  
+To create a `sessionId`, you can generate a random string (e.g., using UUID) and pass it as a query parameter in your API request.
+
+Note: in case if the initially assigned resource becomes unavailable (rate-limited, proxy offline, etc.), our backend will reassign the session to a different resource.
+
+Note: using `sessionId` slows requests down, as multiple users (or even different sessions) can be acquiring the same resource. Since our resources can process only one request at a time, requests with `sessionId` will be queued until the resource is available to take a new request.

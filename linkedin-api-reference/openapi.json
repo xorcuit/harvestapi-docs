@@ -2228,6 +2228,14 @@
             }
           },
           {
+            "name": "salesNavUrl",
+            "in": "query",
+            "description": "LinkedIn Sales Navigator search URL to use for the search. This will override all other search parameters, except page parameter. For pagination, please pass the `page` query parameter separately. \nNote: the scraper doesn't scrape the URL directly, it will parse the URL, sanitize and validate params. It supports all parameters currently, but if LinkedIn adds new parameters in the future, they might not be supported until we update the API. Please contact us in this case.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "description": "Page number for pagination (clamped at 100)",
@@ -2240,6 +2248,14 @@
             "name": "usePrivatePool",
             "in": "query",
             "description": "Set to true to use your private pool of resources (if available)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "requiredAccountId",
+            "in": "query",
+            "description": "If we provide you a private pool of accounts, you can use this parameter to specify which account should be used for this request.",
             "schema": {
               "type": "string"
             }
