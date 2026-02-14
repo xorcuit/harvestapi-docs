@@ -2230,7 +2230,7 @@
           {
             "name": "salesNavUrl",
             "in": "query",
-            "description": "LinkedIn Sales Navigator search URL to use for the search. This will override all other search parameters, except page parameter. For pagination, please pass the `page` query parameter separately. \nNote: the scraper doesn't scrape the URL directly, it will parse the URL, sanitize and validate params. It supports all parameters currently, but if LinkedIn adds new parameters in the future, they might not be supported until we update the API. Please contact us in this case.",
+            "description": "LinkedIn Sales Navigator search URL to use for the search. This will override all other search parameters, except the `page` parameter. For pagination, please pass the `page` query parameter separately. \nNote: the scraper doesn't scrape the URL directly, it will parse the URL, sanitize and validate params. It supports all parameters currently, but if LinkedIn adds new parameters in the future, they might not be supported until we update the API. Please contact us in this case.",
             "schema": {
               "type": "string"
             }
@@ -2242,6 +2242,14 @@
             "schema": {
               "type": "integer",
               "default": 1
+            }
+          },
+          {
+            "name": "sessionId",
+            "in": "query",
+            "description": "Session ID to use for the search. See https://docs.harvest-api.com/linkedin-api-reference/leads/search-leads#session-id for details.",
+            "schema": {
+              "type": "string"
             }
           },
           {
