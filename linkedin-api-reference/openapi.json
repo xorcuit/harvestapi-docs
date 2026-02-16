@@ -424,6 +424,14 @@
             }
           },
           {
+            "name": "industryId",
+            "in": "query",
+            "description": "Filter by industry ID. One value or multiple comma-separated industry IDs. Full list of IDs:  https://github.com/HarvestAPI/linkedin-industry-codes-v2/blob/main/linkedin_industry_code_v2_all_eng.csv",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "description": "Page number for pagination.",
