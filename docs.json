@@ -79,6 +79,10 @@
           {
             "group": "LinkedIn GeoID",
             "pages": ["linkedin-api-reference/geo-id/search"]
+          },
+          {
+            "group": "LinkedIn Interactions",
+            "pages": ["linkedin-api-reference/interactions/send-connection"]
           }
         ]
       },

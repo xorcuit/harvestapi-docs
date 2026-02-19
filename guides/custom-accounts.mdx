@@ -13,6 +13,7 @@ HarvestAPI can use user-supplier LinkedIn accounts. All API endpoints support th
   Use any base64 encoder ([for example](https://www.base64encode.org/)) to encode the JSON and pass it as the `cookie` parameter.
 - `proxy` (optionally): We recommend you to find a clean residential/mobile proxy.
   Proxy location should ideally match your login location. When it's not provided, the scraper will use our proxy pool.
+  Proxy format is `http://username:password@ip:port` or `socks5://username:password@ip:port`
 - `userAgent` (optionally): We also recommend to provide your User Agent, otherwise LinkedIn may log you out
   after scraping a few pages. If you keep getting logged out, copy your user agent from the same browser where
   you exported your cookie, [for example via a tool](https://www.whatismybrowser.com/detect/what-is-my-user-agent/).
