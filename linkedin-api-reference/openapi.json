@@ -1004,6 +1004,14 @@
               "type": "string"
             }
           },
+          {
+            "name": "authorKeywords",
+            "in": "query",
+            "description": "Filter by keywords in authors' profiles",
+            "schema": {
+              "type": "string"
+            }
+          },
 
           {
             "name": "group",
