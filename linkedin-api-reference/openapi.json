@@ -3021,7 +3021,49 @@
                   "properties": {
                     "element": {
                       "type": "object",
-                      "properties": {}
+                      "properties": {
+                        "originToken": {
+                          "type": "string"
+                        },
+                        "body": {
+                          "type": "object",
+                          "properties": {
+                            "attributes": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "text": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "backendUrn": {
+                          "type": "string"
+                        },
+                        "conversationUrn": {
+                          "type": "string"
+                        },
+                        "deliveredAt": {
+                          "type": "integer"
+                        },
+                        "renderContentUnions": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "renderContentFallbackText": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "entityUrn": {
+                          "type": "string"
+                        },
+                        "backendConversationUrn": {
+                          "type": "string"
+                        },
+                        "senderUrn": {
+                          "type": "string"
+                        }
+                      }
                     },
                     "status": {
                       "type": "string"
