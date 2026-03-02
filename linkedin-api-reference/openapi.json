@@ -2883,7 +2883,7 @@
             "name": "sharedSecret",
             "in": "query",
             "required": true,
-            "description": "The shared secret associated with the invitation.",
+            "description": "The shared secret associated with the invitation. Get it from the [received invitations endpoint](/linkedin-api-reference/interactions/received-connections).",
             "schema": {
               "type": "string"
             }
