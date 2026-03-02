@@ -2551,8 +2551,9 @@
         }
       }
     },
+
     "/linkedin/send-connection": {
-      "get": {
+      "post": {
         "summary": "Send LinkedIn connection request",
         "description": "Send LinkedIn connection request to the specified profile. ",
         "parameters": [
@@ -2606,6 +2607,421 @@
                           "type": "string"
                         }
                       }
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/linkedin/sent-connections": {
+      "get": {
+        "summary": "Get my sent connection invitations",
+        "description": "Retrieves a list of connection invitations sent by the current user.",
+        "parameters": [
+          {
+            "name": "cookie",
+            "in": "query",
+            "required": true,
+            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "proxy",
+            "in": "query",
+            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userAgent",
+            "in": "query",
+            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved sent connections",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "type": "object",
+                      "properties": {
+                        "sentInvitations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "invitationId": {
+                                "type": "string"
+                              },
+                              "firstName": {
+                                "type": "string"
+                              },
+                              "lastName": {
+                                "type": "string"
+                              },
+                              "inviterId": {
+                                "type": "string"
+                              },
+                              "sharedSecret": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "myProfile": {
+                          "type": "object",
+                          "properties": {
+                            "firstName": {
+                              "type": "string"
+                            },
+                            "lastName": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "publicIdentifier": {
+                              "type": "string"
+                            },
+                            "linkedinUrl": {
+                              "type": "string",
+                              "format": "url"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/received-connections": {
+      "get": {
+        "summary": "Get my received connection invitations",
+        "description": "Retrieves a list of connection invitations received by the current user.",
+        "parameters": [
+          {
+            "name": "cookie",
+            "in": "query",
+            "required": true,
+            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "proxy",
+            "in": "query",
+            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userAgent",
+            "in": "query",
+            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved received connections",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "type": "object",
+                      "properties": {
+                        "receivedInvitations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "invitationId": {
+                                "type": "string"
+                              },
+                              "invitationSenderId": {
+                                "type": "string"
+                              },
+                              "sharedSecret": {
+                                "type": "string"
+                              },
+                              "sender": {
+                                "type": "object",
+                                "properties": {
+                                  "firstName": {
+                                    "type": "string"
+                                  },
+                                  "lastName": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "publicIdentifier": {
+                                    "type": "string"
+                                  },
+                                  "linkedinUrl": {
+                                    "type": "string",
+                                    "format": "url"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "myProfile": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "firstName": {
+                              "type": "string"
+                            },
+                            "lastName": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/accept-connection": {
+      "post": {
+        "summary": "Accept a connection invitation",
+        "description": "Accepts a pending LinkedIn connection invitation.",
+        "parameters": [
+          {
+            "name": "invitationId",
+            "in": "query",
+            "required": true,
+            "description": "The ID of the invitation to accept.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sharedSecret",
+            "in": "query",
+            "required": true,
+            "description": "The shared secret associated with the invitation.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cookie",
+            "in": "query",
+            "required": true,
+            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "proxy",
+            "in": "query",
+            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userAgent",
+            "in": "query",
+            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Invitation accepted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "type": "object",
+                      "properties": {
+                        "createdAt": {
+                          "type": "integer"
+                        },
+                        "connectedMember": {
+                          "type": "string"
+                        },
+                        "entityUrn": {
+                          "type": "string"
+                        },
+                        "*connectedMemberResolutionResult": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/send-message": {
+      "post": {
+        "summary": "Send LinkedIn message",
+        "description": "Send LinkedIn message to the specified profile. ",
+        "parameters": [
+          {
+            "name": "recipientProfile",
+            "in": "query",
+            "description": "LinkedIn profile URL to which the message will be sent. For example, 'https://www.linkedin.com/in/john-doe-123456789/'",
+            "schema": {
+              "type": "string",
+              "format": "url"
+            }
+          },
+          {
+            "name": "message",
+            "in": "query",
+            "description": "Message text to send.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cookie",
+            "in": "query",
+            "required": true,
+            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "proxy",
+            "in": "query",
+            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userAgent",
+            "in": "query",
+            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "type": "object",
+                      "properties": {}
                     },
                     "status": {
                       "type": "string"

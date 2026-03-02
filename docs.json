@@ -82,7 +82,13 @@
           },
           {
             "group": "LinkedIn Interactions",
-            "pages": ["linkedin-api-reference/interactions/send-connection"]
+            "pages": [
+              "linkedin-api-reference/interactions/received-connections",
+              "linkedin-api-reference/interactions/sent-connections",
+              "linkedin-api-reference/interactions/send-connection",
+              "linkedin-api-reference/interactions/accept-connection",
+              "linkedin-api-reference/interactions/send-message"
+            ]
           }
         ]
       },
