@@ -2189,6 +2189,14 @@
             }
           },
           {
+            "name": "companyHeadquarterLocations",
+            "in": "query",
+            "description": "Filter by company headquarter location text. Comma-separated (max 70)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "excludeLocations",
             "in": "query",
             "description": "Locations to exclude from search. Comma-separated (max 70)",
@@ -2264,6 +2272,14 @@
             "name": "excludeFunctionIds",
             "in": "query",
             "description": "Function IDs to exclude. Comma-separated (max 30)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeCompanyHeadquarterLocations",
+            "in": "query",
+            "description": "Company headquarter locations to exclude from search. Comma-separated (max 70)",
             "schema": {
               "type": "string"
             }
