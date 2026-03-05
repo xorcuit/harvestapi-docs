@@ -1214,8 +1214,8 @@
     },
     "/linkedin/post-comment-replies": {
       "get": {
-        "summary": "Get comments of LinkedIn post",
-        "description": "Get comments of LinkedIn post by post URL.",
+        "summary": "Get replies of LinkedIn post comment",
+        "description": "Get replies of LinkedIn post comment by comment URL.",
         "parameters": [
           {
             "name": "url",
