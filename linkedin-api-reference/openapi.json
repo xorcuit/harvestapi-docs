@@ -1212,6 +1212,71 @@
         }
       }
     },
+    "/linkedin/post-comment-replies": {
+      "get": {
+        "summary": "Get comments of LinkedIn post",
+        "description": "Get comments of LinkedIn post by post URL.",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "URL of the LinkedIn comment (required)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "paginationToken",
+            "in": "query",
+            "description": "Use this token from the previous page response.",
+            "schema": {
+              "type": "string",
+              "format": "nullable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post comment replies response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostComment"
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Pagination"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/linkedin/post-reactions": {
       "get": {
         "summary": "Get reactions of LinkedIn post",
