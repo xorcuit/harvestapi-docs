@@ -139,7 +139,6 @@
           {
             "name": "search",
             "in": "query",
-            "required": true,
             "description": "Search profiles by name",
             "schema": {
               "type": "string",
