@@ -238,6 +238,15 @@
             }
           },
           {
+            "name": "followerOf",
+            "in": "query",
+            "required": false,
+            "description": "Filter profiles that are followers of a LinkedIn profile. Provide the profile URL or ID. One value or multiple comma-separated",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "description": "Page number, use for pagination",
