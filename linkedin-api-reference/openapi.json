@@ -4229,6 +4229,12 @@
           "author": {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "string"
+              },
+              "urn": {
+                "type": "string"
+              },
               "publicIdentifier": {
                 "type": "string"
               },
