@@ -2240,7 +2240,15 @@
           {
             "name": "recentlyChangedJobs",
             "in": "query",
-            "description": "Filter leads who recently changed jobs",
+            "description": "Filter leads who recently changed jobs in the last 90 days.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "postedOnLinkedin",
+            "in": "query",
+            "description": "Filter leads who posted on LinkedIn in the last 30 days",
             "schema": {
               "type": "boolean"
             }
@@ -4181,7 +4189,7 @@
           "id": {
             "type": "string"
           },
-          "linkedinUrl": {
+          "url": {
             "type": "string"
           },
           "title": {
@@ -4191,14 +4199,19 @@
             "type": "string",
             "format": "date-time"
           },
-          "companyName": {
-            "type": "string"
-          },
-          "companyLink": {
-            "type": "string"
-          },
-          "companyUniversalName": {
-            "type": "string"
+          "company": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "universalName": {
+                "type": "string"
+              },
+              "linkedinUrl": {
+                "type": "string"
+              }
+            }
           },
           "location": {
             "type": "object",
