@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "HarvestAPI LinkedIn API reference",
+    "description": "HarvestAPI LinkedIn API reference",
     "license": {
       "name": "MIT"
     },
@@ -3218,372 +3218,528 @@
           }
         }
       },
+
       "Profile": {
-        "required": ["publicIdentifier"],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "publicIdentifier": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "headline": {
-            "type": "string"
-          },
-          "about": {
-            "type": "string"
-          },
-          "linkedinUrl": {
-            "type": "string"
-          },
-          "photo": {
-            "type": "string"
-          },
-          "registeredAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "topSkills": {
-            "type": "string"
-          },
-          "connectionsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "followerCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "openToWork": {
-            "type": "boolean"
-          },
-          "hiring": {
-            "type": "boolean"
-          },
-          "location": {
-            "type": "object",
-            "properties": {
-              "linkedinText": {
-                "type": "string"
-              },
-              "countryCode": {
-                "type": "string"
-              },
-              "parsed": {
-                "type": "object",
-                "properties": {
-                  "text": {
-                    "type": "string"
-                  },
-                  "countryCode": {
-                    "type": "string"
-                  },
-                  "regionCode": {
-                    "type": "string",
-                    "format": "nullable"
-                  },
-                  "country": {
-                    "type": "string"
-                  },
-                  "countryFull": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  },
-                  "city": {
-                    "type": "string"
-                  }
-                }
-              }
+          "id": { "type": "string" },
+          "publicIdentifier": { "type": "string" },
+          "linkedinUrl": { "type": "string", "format": "uri" },
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" },
+          "emails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailDetail"
             }
           },
-
+          "websites": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "companyWebsites": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyWebsite"
+            }
+          },
+          "headline": { "type": "string" },
+          "openToWork": { "type": "boolean" },
+          "hiring": { "type": "boolean" },
+          "premium": { "type": "boolean" },
+          "influencer": { "type": "boolean" },
+          "memorialized": { "type": "boolean" },
+          "creator": { "type": "boolean" },
+          "location": { "$ref": "#/components/schemas/Location" },
+          "objectUrn": { "type": "string" },
+          "registeredAt": { "type": "string", "format": "date-time" },
+          "topSkills": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "connectionsCount": { "type": "integer" },
+          "followerCount": { "type": "integer" },
+          "verified": { "type": "boolean" },
+          "about": { "type": "string" },
           "currentPosition": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Experience" }
+          },
+          "profileTopEducation": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Education" }
+          },
+          "profileActions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Action" }
+          },
+          "profilePicture": { "$ref": "#/components/schemas/ImageObject" },
+          "coverPicture": { "$ref": "#/components/schemas/ImageObject" },
+          "photo": { "type": "string", "format": "uri" },
+          "profileLocales": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Locale" }
+          },
+          "primaryLocale": { "$ref": "#/components/schemas/Locale" },
+          "multiLocaleHeadline": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "companyName": {
-                  "type": "string"
-                }
+                "headline": { "type": "string" },
+                "locale": { "type": "string" }
               }
             }
+          },
+          "services": { "$ref": "#/components/schemas/Services" },
+          "featured": {
+            "$ref": "#/components/schemas/Featured"
           },
           "experience": {
             "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "companyName": {
-                  "type": "string"
-                },
-                "duration": {
-                  "type": "string"
-                },
-                "position": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "string"
-                },
-                "companyLink": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "startDate": {
-                  "type": "object",
-                  "properties": {
-                    "month": {
-                      "type": "string",
-                      "format": "nullable"
-                    },
-                    "year": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "text": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "endDate": {
-                  "type": "object",
-                  "properties": {
-                    "month": {
-                      "type": "string",
-                      "format": "nullable"
-                    },
-                    "year": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "text": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "employmentType": {
-                  "type": "string"
-                }
-              }
-            }
+            "items": { "$ref": "#/components/schemas/Experience" }
           },
           "education": {
             "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "link": {
-                  "type": "string"
-                },
-                "degree": {
-                  "type": "string"
-                },
-                "startDate": {
-                  "type": "object",
-                  "properties": {
-                    "month": {
-                      "type": "string",
-                      "format": "nullable"
-                    },
-                    "year": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "text": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "endDate": {
-                  "type": "object",
-                  "properties": {
-                    "month": {
-                      "type": "string",
-                      "format": "nullable"
-                    },
-                    "year": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "text": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
+            "items": { "$ref": "#/components/schemas/Education" }
           },
           "certifications": {
             "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "issuedAt": {
-                  "type": "string"
-                },
-                "issuedBy": {
-                  "type": "string"
-                },
-                "issuedByLink": {
-                  "type": "string"
-                }
-              }
-            }
+            "items": { "$ref": "#/components/schemas/Certification" }
+          },
+          "projects": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Project" }
+          },
+          "volunteering": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/VolunteerExperience" }
           },
           "receivedRecommendations": {
             "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "givenBy": {
-                  "type": "string"
-                },
-                "givenAt": {
-                  "type": "string"
-                },
-                "givenByLink": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              }
-            }
+            "items": { "type": "object" }
           },
           "skills": {
             "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
+            "items": { "$ref": "#/components/schemas/Skill" }
+          },
+          "publications": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Publication" }
+          },
+          "courses": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Course" }
+          },
+          "patents": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Patent" }
+          },
+          "honorsAndAwards": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/HonorAward" }
           },
           "languages": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "language": {
-                  "type": "string"
-                },
-                "proficiency": {
-                  "type": "string"
-                }
+                "name": { "type": "string" },
+                "proficiency": { "type": "string" }
               }
             }
           },
-          "projects": {
+          "organizations": {
             "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "startDate": {
-                  "type": "object",
-                  "properties": {
-                    "month": {
-                      "type": "string",
-                      "format": "nullable"
-                    },
-                    "year": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "text": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "endDate": {
-                  "type": "object",
-                  "properties": {
-                    "month": {
-                      "type": "string",
-                      "format": "nullable"
-                    },
-                    "year": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "text": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
+            "items": { "$ref": "#/components/schemas/Organization" }
           },
-          "publications": {
+          "causes": {
             "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "publishedAt": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "link": {
-                  "type": "string"
-                }
-              }
-            }
+            "items": { "type": "string" }
           },
-          "featured": {
-            "type": "object",
-            "properties": {
-              "images": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "format": "url"
-                }
-              },
-              "link": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "subtitle": {
-                "type": "string"
-              }
-            }
+          "composeOptionType": { "type": "string" },
+          "moreProfiles": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/LinkedProfile" }
           },
-          "verified": {
-            "type": "boolean"
+          "interests": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/InterestGroup" }
           }
         }
       },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "linkedinText": { "type": "string" },
+          "countryCode": { "type": "string" },
+          "parsed": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "countryCode": { "type": "string" },
+              "regionCode": { "type": "string", "nullable": true },
+              "country": { "type": "string" },
+              "countryFull": { "type": "string" },
+              "state": { "type": "string" },
+              "city": { "type": "string" }
+            }
+          }
+        }
+      },
+      "DateObject": {
+        "type": "object",
+        "properties": {
+          "month": { "type": "string", "nullable": true },
+          "year": { "type": "integer", "nullable": true },
+          "text": { "type": "string" }
+        }
+      },
+      "ImageObject": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "format": "uri", "nullable": true },
+          "sizes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": { "type": "string", "format": "uri" },
+                "width": { "type": "integer" },
+                "height": { "type": "integer" }
+              }
+            }
+          }
+        }
+      },
+      "Locale": {
+        "type": "object",
+        "properties": {
+          "country": { "type": "string" },
+          "language": { "type": "string" }
+        }
+      },
+      "Action": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      },
+      "Experience": {
+        "type": "object",
+        "properties": {
+          "position": { "type": "string" },
+          "location": { "type": "string" },
+          "employmentType": { "type": "string" },
+          "workplaceType": { "type": "string" },
+          "companyName": { "type": "string" },
+          "companyLinkedinUrl": { "type": "string", "format": "uri" },
+          "companyId": { "type": "string" },
+          "duration": { "type": "string" },
+          "description": { "type": "string" },
+          "skills": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "experienceGroupId": { "type": "string" },
+          "startDate": { "$ref": "#/components/schemas/DateObject" },
+          "endDate": { "$ref": "#/components/schemas/DateObject" },
+          "companyLogo": { "$ref": "#/components/schemas/ImageObject" },
+          "companyUniversalName": { "type": "string" }
+        }
+      },
+      "Education": {
+        "type": "object",
+        "properties": {
+          "schoolName": { "type": "string" },
+          "schoolLinkedinUrl": { "type": "string", "format": "uri" },
+          "schoolId": { "type": "string" },
+          "degree": { "type": "string" },
+          "fieldOfStudy": { "type": "string" },
+          "skills": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "startDate": { "$ref": "#/components/schemas/DateObject" },
+          "endDate": { "$ref": "#/components/schemas/DateObject" },
+          "period": { "type": "string" },
+          "schoolLogo": { "$ref": "#/components/schemas/ImageObject" }
+        }
+      },
+      "Services": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "media": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string", "nullable": true },
+                "subtitle": { "type": "string", "nullable": true },
+                "url": { "type": "string", "format": "uri" },
+                "image": { "$ref": "#/components/schemas/ImageObject" }
+              }
+            }
+          },
+          "servicesList": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "rating": { "type": "string" },
+          "requestUrl": { "type": "string", "format": "uri" }
+        }
+      },
+      "Certification": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "issuedAt": { "type": "string" },
+          "link": { "type": "string", "format": "uri", "nullable": true },
+          "issuedBy": { "type": "string" },
+          "issuedByLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "issuedByLogo": { "$ref": "#/components/schemas/ImageObject" }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "duration": { "type": "string" },
+          "startDate": { "$ref": "#/components/schemas/DateObject" },
+          "endDate": { "$ref": "#/components/schemas/DateObject" },
+          "associatedWith": { "type": "string" },
+          "associatedWithLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "description": { "type": "string" },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "linkedinUrl": { "type": "string", "format": "uri" }
+              }
+            }
+          }
+        }
+      },
+      "VolunteerExperience": {
+        "type": "object",
+        "properties": {
+          "role": { "type": "string" },
+          "organizationName": { "type": "string" },
+          "duration": { "type": "string" },
+          "startDate": {
+            "$ref": "#/components/schemas/DateObject",
+            "nullable": true
+          },
+          "endDate": {
+            "$ref": "#/components/schemas/DateObject",
+            "nullable": true
+          }
+        }
+      },
+      "Skill": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "positions": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "endorsements": { "type": "string" }
+        }
+      },
+      "Publication": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "publishedAt": { "type": "string" },
+          "description": { "type": "string", "nullable": true },
+          "link": { "type": "string", "format": "uri", "nullable": true }
+        }
+      },
+      "Course": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "associatedWith": { "type": "string" },
+          "associatedWithLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          }
+        }
+      },
+      "Patent": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "number": { "type": "string" },
+          "issuedAt": { "type": "string" },
+          "description": { "type": "string" },
+          "url": { "type": "string", "format": "uri", "nullable": true }
+        }
+      },
+      "HonorAward": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "issuedBy": { "type": "string" },
+          "issuedAt": { "type": "string" },
+          "description": { "type": "string" },
+          "associatedWith": { "type": "string" },
+          "associatedWithLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          }
+        }
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "positionHeld": { "type": "string", "nullable": true },
+          "description": { "type": "string" },
+          "startDate": { "$ref": "#/components/schemas/DateObject" },
+          "endDate": { "$ref": "#/components/schemas/DateObject" },
+          "companyLinkedinUrl": { "type": "string", "format": "uri" },
+          "logo": { "type": "string", "format": "uri", "nullable": true }
+        }
+      },
+      "LinkedProfile": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" },
+          "position": { "type": "string" },
+          "publicIdentifier": { "type": "string" },
+          "linkedinUrl": { "type": "string", "format": "uri" }
+        }
+      },
+      "InterestGroup": {
+        "type": "object",
+        "properties": {
+          "interestName": { "type": "string" },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "subtitle": { "type": "string", "nullable": true },
+                "link": { "type": "string", "format": "uri", "nullable": true },
+                "caption": { "type": "string" },
+                "image": {
+                  "type": "object",
+                  "properties": {
+                    "url": { "type": "string", "format": "uri" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "EmailDetail": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "deliverable": {
+            "type": "boolean"
+          },
+          "catchAllDomain": {
+            "type": "boolean"
+          },
+          "validEmailServer": {
+            "type": "boolean"
+          },
+          "free": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "qualityScore": {
+            "type": "integer"
+          }
+        }
+      },
+      "Featured": {
+        "type": "object",
+        "properties": {
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "link": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "slides": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeaturedSlide"
+            }
+          }
+        }
+      },
+      "FeaturedSlide": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "subtitle": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        }
+      },
+
       "ProfileShort": {
         "required": ["publicIdentifier"],
         "type": "object",
@@ -3712,8 +3868,8 @@
           }
         }
       },
+
       "Company": {
-        "required": ["universalName"],
         "type": "object",
         "properties": {
           "id": {
@@ -3722,6 +3878,10 @@
           "universalName": {
             "type": "string"
           },
+          "linkedinUrl": {
+            "type": "string",
+            "format": "uri"
+          },
           "name": {
             "type": "string"
           },
@@ -3729,145 +3889,35 @@
             "type": "string"
           },
           "website": {
-            "type": "string"
-          },
-          "linkedinUrl": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
           },
           "logo": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
           },
           "foundedOn": {
-            "type": "object",
-            "properties": {
-              "month": {
-                "type": "string",
-                "format": "nullable"
-              },
-              "year": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "day": {
-                "type": "string",
-                "format": "nullable"
-              }
-            }
+            "$ref": "#/components/schemas/FoundedOnDate"
           },
           "employeeCount": {
-            "type": "integer",
-            "format": "int32"
+            "type": "integer"
           },
           "employeeCountRange": {
-            "type": "object",
-            "properties": {
-              "start": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "end": {
-                "type": "integer",
-                "format": "int32"
-              }
-            }
+            "$ref": "#/components/schemas/EmployeeCountRange"
           },
           "followerCount": {
-            "type": "integer",
-            "format": "int32"
+            "type": "integer"
           },
           "description": {
             "type": "string"
           },
-          "headquarter": {
-            "type": "object",
-            "properties": {
-              "geographicArea": {
-                "type": "string"
-              },
-              "city": {
-                "type": "string"
-              },
-              "country": {
-                "type": "string"
-              },
-              "postalCode": {
-                "type": "string"
-              },
-              "line2": {
-                "type": "string",
-                "format": "nullable"
-              },
-              "line1": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "parsed": {
-                "type": "object",
-                "properties": {
-                  "text": {
-                    "type": "string"
-                  },
-                  "countryCode": {
-                    "type": "string"
-                  },
-                  "regionCode": {
-                    "type": "string",
-                    "format": "nullable"
-                  },
-                  "country": {
-                    "type": "string"
-                  },
-                  "countryFull": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  },
-                  "city": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
+          "companyType": {
+            "type": "string"
           },
           "locations": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "localizedName": {
-                  "type": "string"
-                },
-                "headquarter": {
-                  "type": "boolean"
-                },
-                "description": {
-                  "type": "string",
-                  "format": "nullable"
-                },
-                "country": {
-                  "type": "string"
-                },
-                "geographicArea": {
-                  "type": "string"
-                },
-                "city": {
-                  "type": "string"
-                },
-                "postalCode": {
-                  "type": "string",
-                  "format": "nullable"
-                },
-                "line2": {
-                  "type": "string",
-                  "format": "nullable"
-                },
-                "line1": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/components/schemas/CompanyLocation"
             }
           },
           "specialities": {
@@ -3879,142 +3929,286 @@
           "industries": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Industry"
             }
           },
           "logos": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "url": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer",
-                  "format": "int32"
-                },
-                "height": {
-                  "type": "integer",
-                  "format": "int32"
-                },
-                "expiresAt": {
-                  "type": "integer",
-                  "format": "int64"
-                }
-              }
+              "$ref": "#/components/schemas/ImageResource"
             }
+          },
+          "backgroundCover": {
+            "type": "string",
+            "format": "uri"
           },
           "backgroundCovers": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "url": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer",
-                  "format": "int32"
-                },
-                "height": {
-                  "type": "integer",
-                  "format": "int32"
-                },
-                "expiresAt": {
-                  "type": "integer",
-                  "format": "int64"
-                }
-              }
+              "$ref": "#/components/schemas/ImageResource"
             }
           },
           "active": {
             "type": "boolean"
           },
           "jobSearchUrl": {
-            "type": "string"
-          },
-          "phone": {
             "type": "string",
-            "format": "nullable"
-          },
-          "crunchbaseFundingData": {
-            "type": "object",
-            "properties": {
-              "numberOfFundingRounds": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "lastFundingRound": {
-                "type": "object",
-                "properties": {
-                  "localizedFundingType": {
-                    "type": "string"
-                  },
-                  "leadInvestors": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {}
-                    }
-                  },
-                  "moneyRaised": {
-                    "type": "object",
-                    "properties": {
-                      "amount": {
-                        "type": "string"
-                      },
-                      "currencyCode": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "fundingRoundUrl": {
-                    "type": "string"
-                  },
-                  "announcedOn": {
-                    "type": "object",
-                    "properties": {
-                      "month": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "year": {
-                        "type": "integer",
-                        "format": "int32"
-                      },
-                      "day": {
-                        "type": "integer",
-                        "format": "int32"
-                      }
-                    }
-                  },
-                  "numberOfOtherInvestors": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "investorsUrl": {
-                    "type": "string"
-                  }
-                }
-              },
-              "organizationUrl": {
-                "type": "string"
-              },
-              "updatedAt": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "fundingRoundsUrl": {
-                "type": "string"
-              }
-            }
+            "format": "uri"
           },
           "pageVerified": {
+            "type": "boolean"
+          },
+          "pageType": {
+            "type": "string"
+          },
+          "showcase": {
+            "type": "boolean"
+          },
+          "paidCompany": {
+            "type": "boolean"
+          },
+          "autoGenerated": {
+            "type": "boolean"
+          },
+          "callToActionUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "similarOrganizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SimilarOrganization"
+            }
+          },
+          "affiliatedPages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AffiliatedPage"
+            }
+          }
+        }
+      },
+      "FoundedOnDate": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "integer",
+            "nullable": true
+          },
+          "year": {
+            "type": "integer",
+            "nullable": true
+          },
+          "day": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "EmployeeCountRange": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer",
+            "nullable": true
+          },
+          "end": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "CompanyLocation": {
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "geographicArea": {
+            "type": "string",
+            "nullable": true
+          },
+          "line1": {
+            "type": "string",
+            "nullable": true
+          },
+          "line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "headquarter": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "parsed": {
+            "$ref": "#/components/schemas/ParsedLocation"
+          }
+        }
+      },
+      "ParsedLocation": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "regionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string"
+          },
+          "countryFull": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Industry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "urn": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "hierarchy": {
+            "type": "string"
+          }
+        }
+      },
+      "ImageResource": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          }
+        }
+      },
+      "SimilarOrganization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "universalName": {
+            "type": "string"
+          },
+          "linkedinUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "name": {
+            "type": "string"
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri"
+          },
+          "employeeCountRange": {
+            "$ref": "#/components/schemas/EmployeeCountRange"
+          },
+          "followerCount": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "industries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Industry"
+            }
+          },
+          "backgroundCover": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "AffiliatedPage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "universalName": {
+            "type": "string"
+          },
+          "linkedinUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "name": {
+            "type": "string"
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri"
+          },
+          "followerCount": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "industries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Industry"
+            }
+          },
+          "logos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageResource"
+            }
+          },
+          "showcase": {
+            "type": "boolean"
+          },
+          "paidCompany": {
             "type": "boolean"
           }
         }
       },
+
       "CompanyShort": {
         "required": ["universalName"],
         "type": "object",
