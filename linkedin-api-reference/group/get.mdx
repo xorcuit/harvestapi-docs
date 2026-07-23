@@ -11,7 +11,7 @@ const params = new URLSearchParams({
   groupId: '1898033', // by group ID alternatively
 });
 
-fetch(`https://api.harvest-api.com/linkedin/group?${params.toString()}`, {
+fetch(`https://api.harvestapi.io/linkedin/group?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -20,14 +20,14 @@ fetch(`https://api.harvest-api.com/linkedin/group?${params.toString()}`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/group?groupId=1898033 \
+  --url https://api.harvestapi.io/linkedin/group?groupId=1898033 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/group?groupId=1898033"
+url = "https://api.harvestapi.io/linkedin/group?groupId=1898033"
 
 headers = {"X-API-Key": "<api-key>"}
 

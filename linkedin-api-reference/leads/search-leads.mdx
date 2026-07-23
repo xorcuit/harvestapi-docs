@@ -21,7 +21,7 @@ const params = new URLSearchParams({
   profileLanguages: 'en',
   excludeSeniorityLevelIds: '220,300,310',
 });
-fetch(`https://api.harvest-api.com/linkedin/lead-search?${params.toString()}`, {
+fetch(`https://api.harvestapi.io/linkedin/lead-search?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())

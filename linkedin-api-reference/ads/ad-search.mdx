@@ -17,7 +17,7 @@ const params = new URLSearchParams({
   enddate: '2025-12-31',
 });
 
-fetch(`https://api.harvest-api.com/linkedin/ad-library?${params.toString()}`, {
+fetch(`https://api.harvestapi.io/linkedin/ad-library?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -26,14 +26,14 @@ fetch(`https://api.harvest-api.com/linkedin/ad-library?${params.toString()}`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/ad-library?keyword=sales&accountOwner=ai&countries=US,CA,FR&dateOption=custom-date-range&startdate=2025-01-01&enddate=2025-12-31 \
+  --url https://api.harvestapi.io/linkedin/ad-library?keyword=sales&accountOwner=ai&countries=US,CA,FR&dateOption=custom-date-range&startdate=2025-01-01&enddate=2025-12-31 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/ad-library?keyword=sales&accountOwner=ai&countries=US,CA,FR&dateOption=custom-date-range&startdate=2025-01-01&enddate=2025-12-31"
+url = "https://api.harvestapi.io/linkedin/ad-library?keyword=sales&accountOwner=ai&countries=US,CA,FR&dateOption=custom-date-range&startdate=2025-01-01&enddate=2025-12-31"
 
 headers = {"X-API-Key": "<api-key>"}
 

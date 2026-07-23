@@ -8,7 +8,7 @@ import GeoIdSnippet from '/snippets/geo-id.mdx';
 <CodeGroup>
 
 ```javascript JavaScript
-fetch(`https://api.harvest-api.com/linkedin/geo-id-search?search=Australia`, {
+fetch(`https://api.harvestapi.io/linkedin/geo-id-search?search=Australia`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -17,14 +17,14 @@ fetch(`https://api.harvest-api.com/linkedin/geo-id-search?search=Australia`, {
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/geo-id-search?search=Australia \
+  --url https://api.harvestapi.io/linkedin/geo-id-search?search=Australia \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/geo-id-search?search=Australia"
+url = "https://api.harvestapi.io/linkedin/geo-id-search?search=Australia"
 
 headers = {"X-API-Key": "<api-key>"}
 

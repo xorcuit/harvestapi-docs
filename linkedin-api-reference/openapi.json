@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://api.harvest-api.com"
+      "url": "https://api.harvestapi.io"
     }
   ],
   "security": [
@@ -2385,7 +2385,7 @@
           {
             "name": "sessionId",
             "in": "query",
-            "description": "Session ID to use for the search. See https://docs.harvest-api.com/linkedin-api-reference/leads/search-leads#session-id for details.",
+            "description": "Session ID to use for the search. See https://docs.harvestapi.io/linkedin-api-reference/leads/search-leads#session-id for details.",
             "schema": {
               "type": "string"
             }
@@ -2667,7 +2667,7 @@
             "name": "cookie",
             "in": "query",
             "required": true,
-            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "description": "LinkedIn cookies. Please check https://docs.harvestapi.io/guides/custom-accounts for more details on how to get and use the cookies.",
             "schema": {
               "type": "string"
             }
@@ -2675,7 +2675,7 @@
           {
             "name": "proxy",
             "in": "query",
-            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "Proxy to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -2683,7 +2683,7 @@
           {
             "name": "userAgent",
             "in": "query",
-            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "User-Agent to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -2739,7 +2739,7 @@
             "name": "cookie",
             "in": "query",
             "required": true,
-            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "description": "LinkedIn cookies. Please check https://docs.harvestapi.io/guides/custom-accounts for more details on how to get and use the cookies.",
             "schema": {
               "type": "string"
             }
@@ -2747,7 +2747,7 @@
           {
             "name": "proxy",
             "in": "query",
-            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "Proxy to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -2755,7 +2755,7 @@
           {
             "name": "userAgent",
             "in": "query",
-            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "User-Agent to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -2851,7 +2851,7 @@
             "name": "cookie",
             "in": "query",
             "required": true,
-            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "description": "LinkedIn cookies. Please check https://docs.harvestapi.io/guides/custom-accounts for more details on how to get and use the cookies.",
             "schema": {
               "type": "string"
             }
@@ -2859,7 +2859,7 @@
           {
             "name": "proxy",
             "in": "query",
-            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "Proxy to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -2867,7 +2867,7 @@
           {
             "name": "userAgent",
             "in": "query",
-            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "User-Agent to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -2989,7 +2989,7 @@
             "name": "cookie",
             "in": "query",
             "required": true,
-            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "description": "LinkedIn cookies. Please check https://docs.harvestapi.io/guides/custom-accounts for more details on how to get and use the cookies.",
             "schema": {
               "type": "string"
             }
@@ -2997,7 +2997,7 @@
           {
             "name": "proxy",
             "in": "query",
-            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "Proxy to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -3005,7 +3005,7 @@
           {
             "name": "userAgent",
             "in": "query",
-            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "User-Agent to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -3086,7 +3086,7 @@
             "name": "cookie",
             "in": "query",
             "required": true,
-            "description": "LinkedIn cookies. Please check https://docs.harvest-api.com/guides/custom-accounts for more details on how to get and use the cookies.",
+            "description": "LinkedIn cookies. Please check https://docs.harvestapi.io/guides/custom-accounts for more details on how to get and use the cookies.",
             "schema": {
               "type": "string"
             }
@@ -3094,7 +3094,7 @@
           {
             "name": "proxy",
             "in": "query",
-            "description": "Proxy to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "Proxy to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }
@@ -3102,7 +3102,7 @@
           {
             "name": "userAgent",
             "in": "query",
-            "description": "User-Agent to use for this request. More details - https://docs.harvest-api.com/guides/custom-accounts",
+            "description": "User-Agent to use for this request. More details - https://docs.harvestapi.io/guides/custom-accounts",
             "schema": {
               "type": "string"
             }

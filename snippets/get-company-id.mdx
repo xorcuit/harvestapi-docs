@@ -11,7 +11,7 @@ const params = new URLSearchParams({
   apiKey: '<api-key>',
 });
 
-fetch(`https://api.harvest-api.com/linkedin/company?${params.toString()}`)
+fetch(`https://api.harvestapi.io/linkedin/company?${params.toString()}`)
   .then((res) => res.json())
   .then((data) => {
     const company = data.element;
@@ -21,14 +21,14 @@ fetch(`https://api.harvest-api.com/linkedin/company?${params.toString()}`)
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/company?query=google \
+  --url https://api.harvestapi.io/linkedin/company?query=google \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/company?query=google"
+url = "https://api.harvestapi.io/linkedin/company?query=google"
 
 headers = {"X-API-Key": "<api-key>"}
 
@@ -49,7 +49,7 @@ const params = new URLSearchParams({
   apiKey: '<api-key>',
 });
 
-fetch(`https://api.harvest-api.com/linkedin/company-search?${params.toString()}`)
+fetch(`https://api.harvestapi.io/linkedin/company-search?${params.toString()}`)
   .then((res) => res.json())
   .then((data) => {
     const companies = data.elements;
@@ -60,14 +60,14 @@ fetch(`https://api.harvest-api.com/linkedin/company-search?${params.toString()}`
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/company-search?search=Google \
+  --url https://api.harvestapi.io/linkedin/company-search?search=Google \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/company-search?search=Google"
+url = "https://api.harvestapi.io/linkedin/company-search?search=Google"
 
 headers = {"X-API-Key": "<api-key>"}
 

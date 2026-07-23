@@ -10,7 +10,7 @@ To authenticate your requests, include your API key in the request headers.
 1. **Obtain Your API Key**:
 
    - Log in to your HarvestAPI account.
-   - Navigate to the [API keys Dashboard](https://harvest-api.com/admin/api-keys).
+   - Navigate to the [API keys Dashboard](https://harvestapi.io/admin/api-keys).
    - Create new API key.
 
 2. **Include API Key in Request Headers**:
@@ -24,11 +24,11 @@ To authenticate your requests, include your API key in the request headers.
 ## Try the API in the Playground
 
 Having the API key you can start making requests and see results right away from
-[the API playground](https://docs.harvest-api.com/linkedin-api-reference/profile/get?playground=open).
+[the API playground](https://docs.harvestapi.io/linkedin-api-reference/profile/get?playground=open).
 
 ## Making API Requests
 
-All API requests are made to the following base URL: `https://api.harvest-api.com`
+All API requests are made to the following base URL: `https://api.harvestapi.io`
 
 For example, company search by keyword
 
@@ -36,12 +36,12 @@ For example, company search by keyword
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/company-search?search=Google \
+  --url https://api.harvestapi.io/linkedin/company-search?search=Google \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```javascript JavaScript
-fetch(`https://api.harvest-api.com/linkedin/company-search?search=Google`, {
+fetch(`https://api.harvestapi.io/linkedin/company-search?search=Google`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -51,7 +51,7 @@ fetch(`https://api.harvest-api.com/linkedin/company-search?search=Google`, {
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/company-search?search=Google"
+url = "https://api.harvestapi.io/linkedin/company-search?search=Google"
 
 headers = {"X-API-Key": "<api-key>"}
 

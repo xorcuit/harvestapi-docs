@@ -9,7 +9,7 @@ openapi: 'GET /linkedin/post-comment-replies'
 const params = new URLSearchParams({
   url: 'https://www.linkedin.com/feed/update/urn:li:ugcPost:7396563121059872768?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7396563121059872768%2C7396565439390076928%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287396565439390076928%2Curn%3Ali%3AugcPost%3A7396563121059872768%29',
 });
-fetch(`https://api.harvest-api.com/linkedin/post-comment-replies?${params.toString()}`, {
+fetch(`https://api.harvestapi.io/linkedin/post-comment-replies?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())
@@ -18,14 +18,14 @@ fetch(`https://api.harvest-api.com/linkedin/post-comment-replies?${params.toStri
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/post-comment-replies?url=https://www.linkedin.com/feed/update/urn:li:ugcPost:7396563121059872768?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7396563121059872768%2C7396565439390076928%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287396565439390076928%2Curn%3Ali%3AugcPost%3A7396563121059872768%29 \
+  --url https://api.harvestapi.io/linkedin/post-comment-replies?url=https://www.linkedin.com/feed/update/urn:li:ugcPost:7396563121059872768?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7396563121059872768%2C7396565439390076928%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287396565439390076928%2Curn%3Ali%3AugcPost%3A7396563121059872768%29 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/post-comment-replies?url=https://www.linkedin.com/feed/update/urn:li:ugcPost:7396563121059872768?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7396563121059872768%2C7396565439390076928%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287396565439390076928%2Curn%3Ali%3AugcPost%3A7396563121059872768%29"
+url = "https://api.harvestapi.io/linkedin/post-comment-replies?url=https://www.linkedin.com/feed/update/urn:li:ugcPost:7396563121059872768?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7396563121059872768%2C7396565439390076928%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287396565439390076928%2Curn%3Ali%3AugcPost%3A7396563121059872768%29"
 
 headers = {"X-API-Key": "<api-key>"}
 

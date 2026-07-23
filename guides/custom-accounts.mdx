@@ -38,7 +38,7 @@ const params = new URLSearchParams({
   userAgent:
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
 });
-fetch(`https://api.harvest-api.com/linkedin/profile-search?${params.toString()}`, {
+fetch(`https://api.harvestapi.io/linkedin/profile-search?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())

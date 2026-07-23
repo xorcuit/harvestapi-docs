@@ -25,7 +25,7 @@ Note: In the case of [catch-all company domains](https://hunter.io/blog/ultimate
 
 ## Trying It Out
 
-Try it out in our [API Explorer](https://docs.harvest-api.com/linkedin-api-reference/profile/get?playground=open#parameter-find-email)
+Try it out in our [API Explorer](https://docs.harvestapi.io/linkedin-api-reference/profile/get?playground=open#parameter-find-email)
 You will need to provide:
 
 - API key obtained from the admin, fill in the `X-API-Key` field.
@@ -40,7 +40,7 @@ const params = new URLSearchParams({
   findEmail: 'true',
 });
 
-fetch(`https://api.harvest-api.com/linkedin/profile?${params.toString()}`, {
+fetch(`https://api.harvestapi.io/linkedin/profile?${params.toString()}`, {
   headers: { 'X-API-Key': '<api-key>' },
 })
   .then((response) => response.json())

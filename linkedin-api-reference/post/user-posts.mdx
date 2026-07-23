@@ -17,7 +17,7 @@ const params = new URLSearchParams({
 });
 
 const firstPage = await fetch(
-  `https://api.harvest-api.com/linkedin/post-search?${params.toString()}`,
+  `https://api.harvestapi.io/linkedin/post-search?${params.toString()}`,
   {
     headers: { 'X-API-Key': '<api-key>' },
   },
@@ -28,7 +28,7 @@ params.set('page', '2');
 params.set('paginationToken', firstPage.pagination.paginationToken);
 
 const secondPage = await fetch(
-  `https://api.harvest-api.com/linkedin/post-search?${params.toString()}`,
+  `https://api.harvestapi.io/linkedin/post-search?${params.toString()}`,
   {
     headers: { 'X-API-Key': '<api-key>' },
   },
@@ -37,14 +37,14 @@ const secondPage = await fetch(
 
 ```bash cURL
 curl --request GET \
-  --url https://api.harvest-api.com/linkedin/post-search?profileId=ACoAAA8BYqEBCGLg_vT_ca6mMEqkpp9nVffJ3hc&postedLimit=month&sortBy=date&page=1 \
+  --url https://api.harvestapi.io/linkedin/post-search?profileId=ACoAAA8BYqEBCGLg_vT_ca6mMEqkpp9nVffJ3hc&postedLimit=month&sortBy=date&page=1 \
   --header 'X-API-Key: <api-key>'
 ```
 
 ```python Python
 import requests
 
-url = "https://api.harvest-api.com/linkedin/post-search?profileId=ACoAAA8BYqEBCGLg_vT_ca6mMEqkpp9nVffJ3hc&postedLimit=month&sortBy=date&page=1"
+url = "https://api.harvestapi.io/linkedin/post-search?profileId=ACoAAA8BYqEBCGLg_vT_ca6mMEqkpp9nVffJ3hc&postedLimit=month&sortBy=date&page=1"
 
 headers = {"X-API-Key": "<api-key>"}
 
