@@ -33,7 +33,6 @@
             "pages": [
               "linkedin-api-reference/profile/get",
               "linkedin-api-reference/leads/search-leads",
-              "linkedin-api-reference/profile/search",
               "linkedin-api-reference/profile/profile-posts",
               "linkedin-api-reference/profile/profile-comments",
               "linkedin-api-reference/profile/profile-reactions"
