@@ -819,7 +819,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
+                    "entityId": {
                       "type": "string"
                     },
                     "query": {
